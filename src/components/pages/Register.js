@@ -9,6 +9,7 @@ export default class Register extends Component {
     super(props);
 
     this.state = {
+      isAuthed: false,
       name: '',
       email: '',
       password: ''
@@ -33,16 +34,23 @@ export default class Register extends Component {
     });
   }
 
+  handleAuthed = () => {
+    this.setState({
+      isAuthed: !this.state.isAuthed
+    })
+  }
+
   handleSubmit = event => {
     event.preventDefault();
-
     try {
-      axios.post('https://hackcity.dev/v1/user/new', {
+      axios.post('https://www.hackcity.dev/v1/user/new', {
         name: this.state.name,
         email: this.state.email,
         password: this.state.password
       })
       .then((response) => {
+        localStorage.setItem('jwt', response.data.user.token);
+        this.handleAuthed();
         this.props.childProps.userHasAuthenticated(true, response.data.user.ID);
       })
       .catch(function (error) {

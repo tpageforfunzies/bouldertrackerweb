@@ -19,20 +19,27 @@ class Login extends Component {
     return this.state.email.length > 0 && this.state.password.length > 0;
   }
 
-  handleChange = event => {
+  handleEmailChange = e => {
     this.setState({
-      [event.target.id]: event.target.value
+      email: e.target.value
+    });
+  }
+
+  handlePasswordChange = e => {
+    this.setState({
+      password: e.target.value
     });
   }
 
   handleSubmit = event => {
     event.preventDefault();
     try {
-      axios.post('https://hackcity.dev/v1/user/login', {
+      axios.post('https://www.hackcity.dev/v1/user/login', {
         email: this.state.email,
         password: this.state.password,
       })
       .then((response) => {
+        localStorage.setItem('jwt', response.data.user.token);
         this.props.childProps.userHasAuthenticated(true, response.data.user.ID);
       })
       .catch(function (error) {
@@ -55,14 +62,14 @@ class Login extends Component {
               type="text" 
               name="email" 
               placeholder="Email Address"
-              onChange={this.handleChange}
+              onChange={this.handleEmailChange.bind(this)}
               value={this.state.email} 
             />
             <input 
               type="text" 
               name="password" 
               placeholder="Password"
-              onChange={this.handleChange}
+              onChange={this.handlePasswordChange.bind(this)}
               value={this.state.password} 
             />
             <input 
