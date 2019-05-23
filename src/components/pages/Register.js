@@ -66,6 +66,7 @@ export default class Register extends Component {
     return (
       <div>
         <Header />
+        
         <div className="login-form">
           <h2 className="bold">Register</h2>
           <form onSubmit={this.handleSubmit}>
