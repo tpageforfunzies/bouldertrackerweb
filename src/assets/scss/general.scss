@@ -38,3 +38,16 @@ $brandtwo: #FAB242;
     text-decoration: none;
   }
 }
+
+.button.brandone-outline {
+  border: 3px solid $brandone;
+  color: $brandone;
+  transition: .25s all ease-in-out;
+  text-decoration: none;
+
+  &:hover {
+    background: $brandone;
+    color: white;
+    text-decoration: none;
+  }
+}
