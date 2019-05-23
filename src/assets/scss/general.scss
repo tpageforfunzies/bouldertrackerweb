@@ -1,0 +1,40 @@
+$brandone: #B60B31;
+$brandtwo: #FAB242;
+
+
+.bgone {
+  background: $brandone;
+}
+
+.bgtwo {
+  background: $brandtwo;
+}
+
+.white {
+  color: white;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.button {
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.button.white-outline {
+  border: 3px solid white;
+  color: white;
+  transition: .25s all ease-in-out;
+  text-decoration: none;
+
+  &:hover {
+    background: white;
+    color: $brandone;
+    text-decoration: none;
+  }
+}

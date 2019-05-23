@@ -1,0 +1,11 @@
+@import '../../assets/scss/general';
+
+.login-form {
+  border: 6px solid $brandone;
+  position: fixed;
+  border-radius: 15px;
+  top: 50%;
+  padding: 30px 40px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
