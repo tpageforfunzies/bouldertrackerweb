@@ -1,6 +1,6 @@
 @import '../../assets/scss/general';
 
-.login-form {
+.add-form {
   border-top: 6px solid $brandone;
   position: fixed;
   top: 50%;
@@ -9,28 +9,16 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
-  h2 {
-    margin-bottom: 30px;
-  }
-
   form {
-    input[type=text],
-    input[type=email],
-    input[type=password] {
+    input[type=text] {
       display: block;
       margin: 10px auto;
       box-shadow: none;
       padding: 10px 20px;
       border: 3px solid $brandone;
-      background: white;
       border-radius: 5px;
-
-      &:invalid,
-      &:valid {
-        background: white;
-      }
     }
-
+  
     input[type=submit] {
       display: block;
       padding: 10px 20px;
@@ -41,7 +29,7 @@
       letter-spacing: 0.5px;
       transition: .25s all ease-in-out;
       margin-top: 25px;
-
+  
       &:hover {
         background: $brandone;
         color: white;

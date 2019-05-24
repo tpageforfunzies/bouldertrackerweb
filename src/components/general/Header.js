@@ -18,7 +18,7 @@ class Header extends Component  {
           <div className="uk-navbar-right">
             <ul>
               <li>
-                <Link to="/add" className="white bold">Add Routes</Link>
+                <Link to="/new-route" className="white bold">Add Routes</Link>
               </li>
               <li>
                 <Link to="/profile" className="white bold">Profile</Link>
