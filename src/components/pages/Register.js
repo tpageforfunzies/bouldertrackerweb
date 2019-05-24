@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import './Register.scss';
 import Header from '../general/Header';
+import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
 
 export default class Register extends Component {
   constructor(props) {
@@ -45,7 +46,7 @@ export default class Register extends Component {
       })
       .then((response) => {
         localStorage.setItem('jwt', response.data.user.token);
-        localStorage.setItem('id', response.data.user.ID);
+        
         this.props.handleAuthed(response.data.user.token, response.data.user.ID);
       })
       .catch(function (error) {
@@ -58,40 +59,44 @@ export default class Register extends Component {
   }
 
   render() {
-    return (
-      <div>
-
-        <div className="login-form">
-          <h2 className="bold">Register</h2>
-          <form onSubmit={this.handleSubmit}>
-            <input 
-              type="text" 
-              name="name"  
-              onChange={this.handleNameChange.bind(this)} 
-              value={this.state.name}
-              placeholder="Your name" 
-            />
-            <input 
-              type="email" 
-              name="email" 
-              placeholder="Email Address" 
-              onChange={this.handleEmailChange.bind(this)} 
-              value={this.state.email} 
-            />
-            <input 
-              type="password" 
-              name="password" 
-              placeholder="Password" 
-              onChange={this.handlePasswordChange.bind(this)} 
-              value={this.state.password} 
-            />
-            <input 
-              type="submit" 
-              value="Submit" 
-            />
-          </form>
+    if(this.state.isAuthed) {
+      return <Redirect to='/' />;
+    } else {
+      return (
+        <div>
+  
+          <div className="login-form">
+            <h2 className="bold">Register</h2>
+            <form onSubmit={this.handleSubmit}>
+              <input 
+                type="text" 
+                name="name"  
+                onChange={this.handleNameChange.bind(this)} 
+                value={this.state.name}
+                placeholder="Your name" 
+              />
+              <input 
+                type="email" 
+                name="email" 
+                placeholder="Email Address" 
+                onChange={this.handleEmailChange.bind(this)} 
+                value={this.state.email} 
+              />
+              <input 
+                type="password" 
+                name="password" 
+                placeholder="Password" 
+                onChange={this.handlePasswordChange.bind(this)} 
+                value={this.state.password} 
+              />
+              <input 
+                type="submit" 
+                value="Submit" 
+              />
+            </form>
+          </div>
         </div>
-      </div>
-    )
+      );
+    }
   }
 }

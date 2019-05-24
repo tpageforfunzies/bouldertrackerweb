@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 import Header from './components/general/Header';
 import Home from './components/pages/Home';
@@ -41,6 +41,7 @@ class App extends Component {
       id: id,
       authed: true
     });
+    return <Redirect to="/" />;
   }
 
   handleLogout = () => {
@@ -62,8 +63,8 @@ class App extends Component {
             <Header authed={this.state.authed} jwt={this.state.jwt} handleLogout={this.handleLogout} />
   
             <Route exact path="/" component={() => <Home isAuthed={this.state.authed} jwt={this.state.jwt} id={this.state.id} />} />
-            <Route exact path="/login" component={() => <Login handleAuthed={this.handleAuthed}/>} />
-            <Route exact path="/register" component={() => <Register handleAuthed={this.handleAuthed}/>} />
+            <Route exact path="/login" component={() => <Login isAuthed={this.state.authed} handleAuthed={this.handleAuthed}/>} />
+            <Route exact path="/register" component={() => <Register isAuthed={this.state.authed} handleAuthed={this.handleAuthed}/>} />
           </div>
         </Router>
       );

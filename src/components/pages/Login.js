@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
 
 import './Login.scss';
 import Header from '../general/Header';
@@ -40,7 +40,8 @@ class Login extends Component {
       })
       .then((response) => {
         localStorage.setItem('jwt', response.data.user.token);
-        this.props.childProps.userHasAuthenticated(true, response.data.user.ID);
+        localStorage.setItem('id', response.data.user.ID);
+        this.props.handleAuthed(response.data.user.token, response.data.user.ID);
       })
       .catch(function (error) {
         console.log(error);
@@ -52,33 +53,38 @@ class Login extends Component {
   }
   
   render() {
-    return (
-      <div>
-        <div className="login-form">
-          <h2 className="bold">Login</h2>
-          <form onSubmit={this.handleSubmit}>
-            <input 
-              type="text" 
-              name="email" 
-              placeholder="Email Address"
-              onChange={this.handleEmailChange.bind(this)}
-              value={this.state.email} 
-            />
-            <input 
-              type="password" 
-              name="password" 
-              placeholder="Password"
-              onChange={this.handlePasswordChange.bind(this)}
-              value={this.state.password} 
-            />
-            <input 
-              type="submit" 
-              value="Submit" 
-            />
-          </form>
+    console.log('LOGIN->isAuthed: ', this.props.isAuthed)
+    if(this.props.isAuthed) {
+      return <Redirect to='/' />;
+    } else {
+      return (
+        <div>
+          <div className="login-form">
+            <h2 className="bold">Login</h2>
+            <form onSubmit={this.handleSubmit}>
+              <input 
+                type="text" 
+                name="email" 
+                placeholder="Email Address"
+                onChange={this.handleEmailChange.bind(this)}
+                value={this.state.email} 
+              />
+              <input 
+                type="password" 
+                name="password" 
+                placeholder="Password"
+                onChange={this.handlePasswordChange.bind(this)}
+                value={this.state.password} 
+              />
+              <input 
+                type="submit" 
+                value="Submit" 
+              />
+            </form>
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
   }
 }
 
