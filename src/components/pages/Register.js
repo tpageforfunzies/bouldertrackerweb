@@ -46,7 +46,7 @@ export default class Register extends Component {
       })
       .then((response) => {
         localStorage.setItem('jwt', response.data.user.token);
-        
+        localStorage.setItem('id', parseInt(response.data.user.ID));
         this.props.handleAuthed(response.data.user.token, response.data.user.ID);
       })
       .catch(function (error) {

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Header from './components/general/Header';
 import Home from './components/pages/Home';
 import Login from './components/pages/Login';
 import Register from './components/pages/Register';
+import Profile from './components/pages/Profile';
 
 import './assets/scss/general.scss';
 
@@ -41,7 +42,6 @@ class App extends Component {
       id: id,
       authed: true
     });
-    return <Redirect to="/" />;
   }
 
   handleLogout = () => {
@@ -55,31 +55,18 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.authed);
-    if (!this.state.authed) {
-      return (
-        <Router>
-          <div>
-            <Header authed={this.state.authed} jwt={this.state.jwt} handleLogout={this.handleLogout} />
-  
-            <Route exact path="/" component={() => <Home isAuthed={this.state.authed} jwt={this.state.jwt} id={this.state.id} />} />
-            <Route exact path="/login" component={() => <Login isAuthed={this.state.authed} handleAuthed={this.handleAuthed}/>} />
-            <Route exact path="/register" component={() => <Register isAuthed={this.state.authed} handleAuthed={this.handleAuthed}/>} />
-          </div>
-        </Router>
-      );
-    } else {
-      return (
-        <Router>
-          <div>
-            <Header authed={this.state.authed} jwt={this.state.jwt} handleLogout={this.handleLogout} />
-  
-            <Route exact path="/" component={() => <Home isAuthed={this.state.authed} jwt={this.state.jwt} id={this.state.id} />} />
-          </div>
-        </Router>
-      );
-    }
-    
+    return (
+      <Router>
+        <div>
+          <Header authed={this.state.authed} jwt={this.state.jwt} handleLogout={this.handleLogout} />
+
+          <Route exact path="/" component={() => <Home isAuthed={this.state.authed} jwt={this.state.jwt} id={this.state.id} />} />
+          <Route exact path="/login" component={() => <Login isAuthed={this.state.authed} handleAuthed={this.handleAuthed}/>} />
+          <Route exact path="/register" component={() => <Register isAuthed={this.state.authed} handleAuthed={this.handleAuthed}/>} />
+          <Route exact path="/profile" component={() => <Profile id={this.state.id} jwt={this.state.jwt} />} />
+        </div>
+      </Router>
+    );
   }
 }
 

@@ -40,7 +40,7 @@ class Login extends Component {
       })
       .then((response) => {
         localStorage.setItem('jwt', response.data.user.token);
-        localStorage.setItem('id', response.data.user.ID);
+        localStorage.setItem('id', parseInt(response.data.user.ID));
         this.props.handleAuthed(response.data.user.token, response.data.user.ID);
       })
       .catch(function (error) {
@@ -53,9 +53,9 @@ class Login extends Component {
   }
   
   render() {
-    console.log('LOGIN->isAuthed: ', this.props.isAuthed)
+    console.log('LOGIN->isAuthed: ', this.props.isAuthed);
     if(this.props.isAuthed) {
-      return <Redirect to='/' />;
+      return <Redirect push to='/' />;
     } else {
       return (
         <div>

@@ -18,6 +18,12 @@ class Header extends Component  {
           <div className="uk-navbar-right">
             <ul>
               <li>
+                <Link to="/add" className="white bold">Add Routes</Link>
+              </li>
+              <li>
+                <Link to="/profile" className="white bold">Profile</Link>
+              </li>
+              <li>
                 <a className="button white-outline" onClick={this.props.handleLogout}>Logout</a>
               </li>
             </ul>       
