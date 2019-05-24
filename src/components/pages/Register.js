@@ -34,14 +34,9 @@ export default class Register extends Component {
     });
   }
 
-  handleAuthed = () => {
-    this.setState({
-      isAuthed: !this.state.isAuthed
-    })
-  }
-
   handleSubmit = event => {
     event.preventDefault();
+
     try {
       axios.post('https://www.hackcity.dev/v1/user/new', {
         name: this.state.name,
@@ -50,8 +45,8 @@ export default class Register extends Component {
       })
       .then((response) => {
         localStorage.setItem('jwt', response.data.user.token);
-        this.handleAuthed();
-        this.props.childProps.userHasAuthenticated(true, response.data.user.ID);
+        localStorage.setItem('id', response.data.user.ID);
+        this.props.handleAuthed(response.data.user.token, response.data.user.ID);
       })
       .catch(function (error) {
         console.log(error);
@@ -65,8 +60,7 @@ export default class Register extends Component {
   render() {
     return (
       <div>
-        <Header />
-        
+
         <div className="login-form">
           <h2 className="bold">Register</h2>
           <form onSubmit={this.handleSubmit}>

@@ -54,7 +54,6 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <Header />
         <div className="login-form">
           <h2 className="bold">Login</h2>
           <form onSubmit={this.handleSubmit}>
@@ -66,7 +65,7 @@ class Login extends Component {
               value={this.state.email} 
             />
             <input 
-              type="text" 
+              type="password" 
               name="password" 
               placeholder="Password"
               onChange={this.handlePasswordChange.bind(this)}

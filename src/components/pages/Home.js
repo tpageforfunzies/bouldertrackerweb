@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import Header from '../general/Header';
 
-function Home(props) {
-  return (
-    <div>
-      <Header />
-    </div>
-  )
+class Home extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        
+      </div>
+    )
+  }
 }
 
 export default Home;

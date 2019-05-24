@@ -4,32 +4,8 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './Header.scss';
 
 class Header extends Component  {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      jwt: '',
-      isAuthed: false
-    }
-    this.checkAuth();
-  }
-
-  checkAuth = () => {
-    console.log('CHECKING AUTH');
-    if(localStorage.getItem('jwt')) {
-      if(localStorage.getItem('jwt').length > 0) {
-        console.log('JWT FOUND');
-        this.setState({
-          isAuthed: true
-        });
-      }
-    }
-  }
-
-
   render() {
-    console.log('header->render',this.state);
-    if(this.state.isAuthed) {
+    if(this.props.authed) {
       return (
         <div className="header bgone">
           <div className="uk-navbar-left">
@@ -42,7 +18,7 @@ class Header extends Component  {
           <div className="uk-navbar-right">
             <ul>
               <li>
-                <Link to="/logout" className="button white-outline">Logout</Link>
+                <a className="button white-outline" onClick={this.props.handleLogout}>Logout</a>
               </li>
             </ul>       
           </div>
