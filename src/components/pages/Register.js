@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import './scss/Register.scss';
-import Header from '../general/Header';
-import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
+import { BrowserRouter as Redirect } from 'react-router-dom';
 
 export default class Register extends Component {
   constructor(props) {
@@ -63,7 +62,7 @@ export default class Register extends Component {
       return <Redirect to='/' />;
     } else {
       return (
-        <div>
+        <div className="register-page-container overlay">
   
           <div className="login-form">
             <h2 className="bold">Register</h2>

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
+import { BrowserRouter as Redirect } from 'react-router-dom';
 
 import './scss/Login.scss';
-import Header from '../general/Header';
 
 class Login extends Component {
   constructor(props) {
@@ -58,7 +57,7 @@ class Login extends Component {
       return <Redirect push to='/' />;
     } else {
       return (
-        <div>
+        <div className="login-page-container overlay">
           <div className="login-form">
             <h2 className="bold">Login</h2>
             <form onSubmit={this.handleSubmit}>

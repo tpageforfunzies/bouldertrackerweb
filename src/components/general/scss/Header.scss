@@ -1,6 +1,11 @@
 .header {
   padding: 10px 20px;
   min-height: 80px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
   box-shadow: 0 0 14px rgba(0,0,0,0.55);
 
   .brand {
@@ -34,4 +39,8 @@
     right: 0;
     display: inline-block;
   }
+}
+
+.header-spacer {
+  height: 100px;
 }

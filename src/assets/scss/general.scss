@@ -1,6 +1,10 @@
 $brandone: #B60B31;
 $brandtwo: #0B3954;
 
+#root {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
 
 .bgone {
   background: $brandone;

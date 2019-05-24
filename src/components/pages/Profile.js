@@ -10,73 +10,13 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      routes: [
-        {
-          'ID': 1,
-          name: 'Route 1',
-          grade: 'V1' 
-        },
-        {
-          'ID': 1,
-          name: 'Route 1',
-          grade: 'V1' 
-        },
-        {
-          'ID': 1,
-          name: 'Route 1',
-          grade: 'V1' 
-        },
-        {
-          'ID': 1,
-          name: 'Route 1',
-          grade: 'V1' 
-        },
-        {
-          'ID': 1,
-          name: 'Route 1',
-          grade: 'V1' 
-        },
-        {
-          'ID': 1,
-          name: 'Route 1',
-          grade: 'V1' 
-        },
-        {
-          'ID': 1,
-          name: 'Route 1',
-          grade: 'V1' 
-        },
-        {
-          'ID': 1,
-          name: 'Route 1',
-          grade: 'V1' 
-        },
-        {
-          'ID': 1,
-          name: 'Route 1',
-          grade: 'V1' 
-        },
-        {
-          'ID': 1,
-          name: 'Route 1',
-          grade: 'V1' 
-        },
-        {
-          'ID': 1,
-          name: 'Route 1',
-          grade: 'V1' 
-        },
-        {
-          'ID': 1,
-          name: 'Route 1',
-          grade: 'V1' 
-        },
-      ],
+      routes: [],
       email: '',
       name: '',
       id: this.props.id
     }
 
+    this.fetchRoutes();
   }
 
   handleRoutes = routes => {
@@ -128,11 +68,11 @@ class Profile extends Component {
     if (this.props.id > 0) {
       return (
         <div>
-          <div className="uk-grid uk-grid-medium profile-container">
-            <div className="uk-width-1-1 uk-width-1-3@m profile bgtwo">
+          <div className="uk-grid uk-grid-collapse profile-container">
+            <div className="uk-width-1-1 uk-width-1-3@m uk-text-center uk-text-left@m profile bgtwo">
               <div className="uk-section">
-                <h1 class="bold white">Profile</h1>
-                <img className="avatar" src="https://placekitten.com/250/250" />
+                <h1 className="bold white">Profile</h1>
+                <img className="avatar" src="https://placekitten.com/250/250" alt="placeholder avatar" />
                 <h2 className="bold white">Jeff Hooton</h2>
                 <p className="white"><span className="bold">Email:</span> jeffreyd@hooton.com</p>
                 <div className="whiteline"></div>
@@ -147,7 +87,7 @@ class Profile extends Component {
               <div className="uk-section">
               <div className="uk-grid">
                   <div className="uk-width-1-1 uk-width-1-2@s uk-text-center uk-text-left@s">
-                    <h1 class="bold">My Routes</h1>
+                    <h1 className="bold">My Routes</h1>
                   </div>
                   <div className="uk-width-1-1 uk-width-1-2@s uk-text-center uk-text-right@s">
                     <Link to="/new-route" className="button brandone-outline">Add Route</Link>
