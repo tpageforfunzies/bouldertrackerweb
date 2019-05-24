@@ -1,0 +1,28 @@
+@import '../../../assets/scss/general';
+
+.single-box {
+  margin-top: 30px;
+
+  .container {
+    border-top: 6px solid $brandone;
+    box-shadow: 0 0 10px rgba(0,0,0,0.55);
+    max-width: 95%;
+    margin: 0 auto;
+    
+    .text {
+      padding: 5px 20px;
+      text-align: left;
+
+      h2 {
+        margin-bottom: 2px;
+      }
+  
+      h4 {
+        margin-top: 2px;
+        margin-bottom: 5px;
+
+      }
+    }
+    
+  }
+}

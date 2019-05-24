@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
 
-import './Login.scss';
+import './scss/Login.scss';
 import Header from '../general/Header';
 
 class Login extends Component {

@@ -1,0 +1,40 @@
+@import '../../../assets/scss/general';
+
+.profile-container {
+  padding: 0 30px;
+  background: #f7f7f7;
+
+  .routes {
+    background-color: #f7f7f7;
+    border-left: 6px solid $brandone;
+    
+    .uk-section {
+      h1 {
+        padding-left: 20px;
+      }
+    }
+  }
+
+  .profile {
+    .uk-section {
+      img.avatar {
+        border-radius: 15px;
+        border: 3px solid white;
+      }
+
+      h2 {
+        margin-bottom: 2px;
+      }
+
+      h3 {
+        margin-top: 2px;
+        margin-bottom: 2px;
+      }
+
+      p {
+        margin-top: 2px;
+        margin-bottom: 2px;
+      }
+    }
+  }
+}

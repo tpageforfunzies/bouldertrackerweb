@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import './Register.scss';
+import './scss/Register.scss';
 import Header from '../general/Header';
 import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
 

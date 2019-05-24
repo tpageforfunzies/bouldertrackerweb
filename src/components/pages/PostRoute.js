@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Redirect } from 'react-router-dom';
 import axios from 'axios';
 
-import './PostRoute.scss';
+import './scss/PostRoute.scss';
 
 class PostRoute extends Component {
   constructor(props) {
