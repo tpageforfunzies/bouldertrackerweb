@@ -56,7 +56,7 @@ class Home extends Component {
 
       recent = <HomeRoll 
                   authed={this.props.isAuthed} 
-                  jwt={this.props.jwt} 
+                  jwt={this.props.jwt}
                 />
     } else {
       recent = <div></div>

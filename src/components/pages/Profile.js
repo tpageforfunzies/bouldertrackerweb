@@ -25,8 +25,11 @@ class Profile extends Component {
 
   fetchRoutes = () => {
     let url = 'https://www.hackcity.dev/v1/user/' + this.props.id.toString() + '/routes';
-    console.log('fetchRoutes->jwt', this.props.jwt);
     let authHeader = { "Authorization": "Bearer ".concat(this.props.jwt) }
+    
+    console.log('fetchRoutes->jwt', this.props.jwt);
+    console.log('[homeroll] profile->fetchroutes', authHeader);
+    
     try {
       axios.get(url, {
         headers: authHeader
@@ -46,14 +49,15 @@ class Profile extends Component {
   fetchUser = () => {
     let url = 'https://www.hackcity.dev/v1/user/' + this.props.id.toString();
     let authHeader = { "Authorization": "Bearer ".concat(this.props.jwt) }
-    
+    console.log('[homeroll] profile->fetchuser', authHeader);
+
     try {
       axios.get(url, {
         headers: authHeader
       })
       .then((res) => {
         this.handleRoutes(res.data.routes);
-        console.log('post-axios route gather:', this.state.routes);
+        console.log('post-axios user gather:', this.state.routes);
       })
       .catch((err) => {
         console.log(err);

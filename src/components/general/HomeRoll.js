@@ -20,35 +20,38 @@ class HomeRoll extends Component {
         authed: true,
         jwt: this.props.jwt
       })
-      this.gatherRecentRoutes();
+      
     } else {
-      this.gatherRecentRoutes();
     }
   }
 
-  gatherRecentRoutes =() => {
-    let url = 'https://www.hackcity.dev/v1/routes/';
+  gatherRecentRoutes = () => {
     console.log('[gatherRecentRoutes] jwt', this.props.jwt)
     let authHeader = { "Authorization": "Bearer ".concat(this.props.jwt) }
 
     console.log('[homeroll] authHeader', authHeader);
 
     try {
-      axios.get(url, {
+      axios.get('https://www.hackcity.dev/v1/routes', {
         headers: authHeader
       })
       .then((res) => {
+        console.log(res);
         console.log(res.data);
+        console.log('gather routes success');
       })
       .catch((err) => {
-        console.log(err);
+        console.log('gather routes failure', err);
+        alert(err);
       })
     } catch(err) {
-      console.log('[homeroll] axios.catch(err)', err);
+      alert(err);
     }
   }
 
   render() {
+    this.gatherRecentRoutes();
+    console.log('[homeroll] inside render', this.state.jwt)
     return (
       <div className="home-roll uk-section">
         <div className="gridl">

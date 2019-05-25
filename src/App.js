@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 import Header from './components/general/Header';
 import Home from './components/pages/Home';
@@ -43,6 +43,7 @@ class App extends Component {
       id: id,
       authed: true
     });
+    return <Redirect to="/" />;
   }
 
   handleLogout = () => {
