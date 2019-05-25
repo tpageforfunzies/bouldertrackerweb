@@ -46,6 +46,7 @@ class Profile extends Component {
   fetchUser = () => {
     let url = 'https://www.hackcity.dev/v1/user/' + this.props.id.toString();
     let authHeader = { "Authorization": "Bearer ".concat(this.props.jwt) }
+    
     try {
       axios.get(url, {
         headers: authHeader
