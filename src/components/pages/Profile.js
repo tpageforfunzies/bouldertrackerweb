@@ -107,8 +107,8 @@ class Profile extends Component {
                 <div className="whiteline"></div>
                 <h3 className="bold white">Statistics</h3>
                 <p className="white"><span className="bold">Sends:</span> {this.state.routes.length}</p>
-                <p className="white"><span className="bold">Average Difficulty Sent:</span> V{this.calculateAverage()} </p>
-                <p className="white"><span className="bold">Most Difficult Route:</span> V{this.calculateHighest()} </p>
+                <p className="white"><span className="bold">Average Difficulty of Route Sent:</span> V{this.calculateAverage()} </p>
+                <p className="white"><span className="bold">Most Difficult Route Sent:</span> V{this.calculateHighest()} </p>
                 <p className="white"><span className="bold">Most Active Month:</span> {this.calculateMostFrequentMonth()}</p>
               </div>
             </div>
@@ -122,7 +122,7 @@ class Profile extends Component {
                     <Link to="/new-route" className="button brandone-outline">Add Route</Link>
                   </div>
                 </div>
-                <div className="uk-grid uk-grid-small">
+                <div className="uk-grid uk-grid-small" data-uk-grid="masonry: true">
                   {this.state.routes ?
                   this.state.routes.map((route, index) => (
                     <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} comments={route.Comments}/>
