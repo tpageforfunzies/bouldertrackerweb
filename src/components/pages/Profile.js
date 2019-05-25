@@ -20,7 +20,7 @@ class Profile extends Component {
   }
 
   handleRoutes = routes => {
-    this.setState({ routes: routes });
+    this.setState({ routes: routes.reverse() });
   }
 
   fetchRoutes = () => {
@@ -111,7 +111,7 @@ class Profile extends Component {
                 </div>
                 <div className="uk-grid uk-grid-small">
                   {this.state.routes ?
-                  this.state.routes.reverse().map((route, index) => (
+                  this.state.routes.map((route, index) => (
                     <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} comments={route.Comments}/>
                   )) 
                   :<h2>'No Routes found.'</h2> 
