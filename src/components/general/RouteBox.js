@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Link } from 'react-router-dom';
+import CommentAccordion from './CommentAccordion';
 
 import './scss/RouteBox.scss';
 
@@ -17,6 +18,7 @@ function RouteBox(props) {
             <h4>V{props.grade}</h4>
             <h4>{sendDate.toDateString()}</h4>
           </div>
+          <CommentAccordion comments={props.comments}/>
         </div>
       </Link>
     </div>

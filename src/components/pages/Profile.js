@@ -79,6 +79,7 @@ class Profile extends Component {
 
   render() {
     console.log('id: ', this.props.id);
+    console.log(this.state.routes);
 
     if (this.props.id > 0) {
       return (
@@ -111,7 +112,7 @@ class Profile extends Component {
                 <div className="uk-grid uk-grid-small">
                   {this.state.routes ?
                   this.state.routes.reverse().map((route, index) => (
-                    <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt}/>
+                    <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} comments={route.Comments}/>
                   )) 
                   :<h2>'No Routes found.'</h2> 
                   }
