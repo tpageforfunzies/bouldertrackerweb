@@ -77,9 +77,22 @@ class Profile extends Component {
     return highest;
   }
 
+  // TODO: OPTIMIZE THE SHIT OUT OF THIS
+  calculateMostFrequentMonth = () => {
+    let routes = this.state.routes;
+    let monthNames = [ "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December" ];
+
+    let monthCounts = routes.reduce(function(counts,route){
+      let month = new Date(route.CreatedAt).getMonth();
+      counts[month] = (counts[month] || 0) + 1;
+      return counts;
+    },{});
+    return monthNames[Object.keys(monthCounts).find(key => monthCounts[key] === Math.max(...Object.values(monthCounts)))];;
+  }
+
   render() {
     console.log('id: ', this.props.id);
-    console.log(this.state.routes);
 
     if (this.props.id > 0) {
       return (
@@ -96,7 +109,7 @@ class Profile extends Component {
                 <p className="white"><span className="bold">Sends:</span> {this.state.routes.length}</p>
                 <p className="white"><span className="bold">Average Difficulty Sent:</span> V{this.calculateAverage()} </p>
                 <p className="white"><span className="bold">Most Difficult Route:</span> V{this.calculateHighest()} </p>
-                <p className="white"><span className="bold">Most Active Month:</span> May</p>
+                <p className="white"><span className="bold">Most Active Month:</span> {this.calculateMostFrequentMonth()}</p>
               </div>
             </div>
             <div className="uk-width-1-1 uk-width-2-3@m routes">
