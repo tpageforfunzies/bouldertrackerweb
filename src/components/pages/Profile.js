@@ -93,8 +93,8 @@ class Profile extends Component {
                 <div className="whiteline"></div>
                 <h3 className="bold white">Statistics</h3>
                 <p className="white"><span className="bold">Sends:</span> {this.state.routes.length}</p>
-                <p className="white"><span className="bold">Average Difficulty Sent:</span> {this.calculateAverage()} </p>
-                <p className="white"><span className="bold">Most Difficult Route:</span> {this.calculateHighest()} </p>
+                <p className="white"><span className="bold">Average Difficulty Sent:</span> V{this.calculateAverage()} </p>
+                <p className="white"><span className="bold">Most Difficult Route:</span> V{this.calculateHighest()} </p>
                 <p className="white"><span className="bold">Most Active Month:</span> May</p>
               </div>
             </div>
