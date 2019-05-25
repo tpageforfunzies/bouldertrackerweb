@@ -5,6 +5,7 @@ import './scss/RouteBox.scss';
 
 function RouteBox(props) {
   var routeurl = '/route/'.concat(props.id);
+  let sendDate = new Date(props.sendDate);
 
   return (
     <div className="single-box uk-width-1-1 uk-width-1-3@s">
@@ -13,7 +14,8 @@ function RouteBox(props) {
           <img src="https://placekitten.com/400/300" alt="placeholder route" />
           <div className="text">
             <h2 className="bold">{props.name}</h2>
-            <h4>{props.grade}</h4>
+            <h4>V{props.grade}</h4>
+            <h4>{sendDate.toDateString()}</h4>
           </div>
         </div>
       </Link>

@@ -62,6 +62,21 @@ class Profile extends Component {
     }
   }
 
+  calculateAverage = () => {
+    let routeCount = this.state.routes.length;
+    let routes = this.state.routes;
+    let average = (routes.reduce((sum, route) => sum + parseInt(route.grade), 0) / routeCount).toFixed(2);
+    return average;
+  }
+
+  calculateHighest = () => {
+    let routes = this.state.routes;
+    let highest = Math.max.apply(null, routes.map(function(route) {
+      return parseInt(route.grade);
+    }));
+    return highest;
+  }
+
   render() {
     console.log('id: ', this.props.id);
 
@@ -77,9 +92,9 @@ class Profile extends Component {
                 <p className="white"><span className="bold">Email:</span> jeffreyd@hooton.com</p>
                 <div className="whiteline"></div>
                 <h3 className="bold white">Statistics</h3>
-                <p className="white"><span className="bold">Sends:</span> 12</p>
-                <p className="white"><span className="bold">Average Difficulty Sent:</span> V3</p>
-                <p className="white"><span className="bold">Most Difficult Route:</span> V6</p>
+                <p className="white"><span className="bold">Sends:</span> {this.state.routes.length}</p>
+                <p className="white"><span className="bold">Average Difficulty Sent:</span> {this.calculateAverage()} </p>
+                <p className="white"><span className="bold">Most Difficult Route:</span> {this.calculateHighest()} </p>
                 <p className="white"><span className="bold">Most Active Month:</span> May</p>
               </div>
             </div>
@@ -95,8 +110,8 @@ class Profile extends Component {
                 </div>
                 <div className="uk-grid uk-grid-small">
                   {this.state.routes ?
-                  this.state.routes.map((route, index) => (
-                    <RouteBox key={index} name={route.name} grade={route.grade} />
+                  this.state.routes.reverse().map((route, index) => (
+                    <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt}/>
                   )) 
                   :<h2>'No Routes found.'</h2> 
                   }
