@@ -32,3 +32,32 @@
     }
   }
 }
+.comment-form-container {
+  position: relative;
+  height: 100%;
+
+  .comment-form {
+    display: block;
+    width: 100%;
+    position: absolute;
+    margin-top: 20px;
+  
+    input[type="text"] {
+      background: white;
+      border: 3px solid $brandone;
+      padding: 10px 20px;
+      display: inline-block;
+      width: 55%;
+    }
+  
+    input[type="submit"] {
+      display: inline-block;
+      background: $brandone;
+      border: 3px solid $brandone;
+      padding: 10px;
+      color: white;
+      margin-left: 10px;
+      font-weight: bold;
+    }
+  }
+}

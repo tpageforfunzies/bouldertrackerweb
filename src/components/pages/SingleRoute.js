@@ -5,6 +5,7 @@ import axios from 'axios';
 import CommentAccordion from '../general/CommentAccordion';
 
 import './scss/SingleRoute.scss';
+import { BarLoader } from 'react-spinners';
 
 class SingleRoute extends Component {
   constructor(props) {
@@ -13,7 +14,8 @@ class SingleRoute extends Component {
     this.state = {
       route: {},
       id: this.props.id,
-      jwt: localStorage.getItem('jwt')
+      jwt: localStorage.getItem('jwt'),
+      comment: ''
     }
 
     this.fetchRoute();
@@ -26,7 +28,7 @@ class SingleRoute extends Component {
     });
   }
 
-  fetchRoute = () => {
+  fetchRoute = async () => {
     let url = 'https://www.hackcity.dev/v1/route/'.concat(this.props.match.params.id);
 
     console.log(url)
@@ -34,7 +36,7 @@ class SingleRoute extends Component {
     console.log(authHeader)
 
     try {
-      axios.get(url, { headers: authHeader })
+      await axios.get(url, { headers: authHeader })
       .then((res) => {
         console.log(res);
         this.handleRoute(res.data.route);
@@ -48,10 +50,58 @@ class SingleRoute extends Component {
 
   }
 
+  handleCommentChange = (e) => {
+    this.setState({
+      comment: e.target.value
+    });
+  }
+
+  handleCommentSubmit = () => {
+    let url = 'https://www.hackcity.dev/v1/comment/new';
+    let authHeader = { "Authorization": "Bearer ".concat(this.props.jwt) };
+
+    try {
+      axios({
+        method: 'post',
+        url: url,
+        headers: authHeader,
+        data: {
+          user_id: this.state.id,
+          route_id: this.state.route.ID,
+          comment: this.state.comment
+        }
+      })
+      .then((res) => {
+        console.log(res);
+        this.handleRoute(res.data.route);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    } catch(e) {
+      console.log(e);
+    }
+  }
+
   render() {
     let comments;
-
-    console.log('[SINGLE ROUTE] THIS.STATE.ROUTE', this.state.route);
+    let commentform = (
+      <div className="comment-form-container">
+        <form onSubmit={this.handleCommentSubmit} className="comment-form">
+          <input 
+            type="text" 
+            name="comment" 
+            placeholder="Leave a comment!"
+            onChange={this.handleCommentChange.bind(this)}
+            value={this.state.comment} 
+          />
+          <input 
+            type="submit" 
+            value="Submit" 
+          />
+        </form>
+      </div>
+    )
 
     if(this.state.route.Comments) {
       if(this.state.route.Comments.length > 0) {
@@ -59,10 +109,12 @@ class SingleRoute extends Component {
           <CommentAccordion comments={this.state.route.Comments}/>
         );
       } else {
-        comments = <div></div>;
+        comments = <div>
+          <p>No comments yet</p>
+        </div>;
       }
     } else {
-      comments = <div></div>;
+      comments = <div><p>No comments yet</p></div>;
     }
     
     console.log('[SingleRoute] this.state.route', this.state.route);
@@ -72,18 +124,26 @@ class SingleRoute extends Component {
       <div className="single-route-page">
         <div className="uk-section">
           <div className="gridl">
-            <div className="single-route">
-              <div className="uk-grid uk-grid-collapse">
-                <div className="uk-width-1-1 uk-width-1-2 image">
-                  <img src="https://placekitten.com/500/600" alt="single route placeholder" />
-                </div>
-                <div className="uk-width-1-1 uk-width-1-2 data">
-                  <h2 className="bold black">{this.state.route.name}</h2>
-                  <h4 className="black">V{this.state.route.grade}</h4>
-                  {comments}
+            {this.state.route ? (
+              <div className="single-route">
+                <div className="uk-grid uk-grid-collapse">
+                  <div className="uk-width-1-1 uk-width-1-2 image">
+                    <img src="https://placekitten.com/500/600" alt="single route placeholder" />
+                  </div>
+                  <div className="uk-width-1-1 uk-width-1-2 data">
+                    <h2 className="bold black">{this.state.route.name}</h2>
+                    <h4 className="black">V{this.state.route.grade}</h4>
+                    {comments}
+                    {commentform}
+                  </div>
                 </div>
               </div>
-            </div>
+            )
+
+              :
+              <BarLoader />
+            }
+            
           </div>
         </div>
       </div>

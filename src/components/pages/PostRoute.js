@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Redirect } from 'react-router-dom';
+import { BrowserRouter as Redirect, withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 import './scss/PostRoute.scss';
@@ -29,7 +29,7 @@ class PostRoute extends Component {
     });
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     let header = { "Authorization": "Bearer ".concat(this.props.jwt) };
     console.log('header', header);
@@ -65,35 +65,33 @@ class PostRoute extends Component {
   render() {
     if (this.props.id > 0) {
       if (this.state.goBack) {
-        return <Redirect to='/profile' />;
-      } else {
-        return (
-          <div className="add-form">
-            <h2 className="bold">Add Route</h2>
-            <form onSubmit={this.handleSubmit}>
-              <input 
-                type="text" 
-                name="name" 
-                placeholder="Route Name"
-                onChange={this.handleNameChange.bind(this)}
-                value={this.state.email} 
-              />
-              <input 
-                type="text" 
-                name="grade" 
-                placeholder="Route Grade"
-                onChange={this.handleGradeChange.bind(this)}
-                value={this.state.password} 
-              />
-              <input 
-                type="submit" 
-                value="Submit" 
-              />
-            </form>
-          </div>
-        );
+        this.props.history.push('/profile');
       }
-      
+      return (
+        <div className="add-form">
+          <h2 className="bold">Add Route</h2>
+          <form onSubmit={this.handleSubmit}>
+            <input 
+              type="text" 
+              name="name" 
+              placeholder="Route Name"
+              onChange={this.handleNameChange.bind(this)}
+              value={this.state.email} 
+            />
+            <input 
+              type="text" 
+              name="grade" 
+              placeholder="Route Grade"
+              onChange={this.handleGradeChange.bind(this)}
+              value={this.state.password} 
+            />
+            <input 
+              type="submit" 
+              value="Submit" 
+            />
+          </form>
+        </div>
+      );
     } else {
       return <Redirect to="/login" />;
     }
@@ -101,4 +99,4 @@ class PostRoute extends Component {
   }
 }
 
-export default PostRoute;
+export default withRouter(PostRoute);

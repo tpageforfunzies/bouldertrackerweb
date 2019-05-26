@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import RouteBox from './RouteBox';
+import { BarLoader } from 'react-spinners';
 
 class HomeRoll extends Component {
   constructor(props) {
@@ -34,9 +35,9 @@ class HomeRoll extends Component {
     }
   }
 
-  gatherRecentRoutes = () => {
+  gatherRecentRoutes = async () => {
     try {
-      axios.get('https://www.hackcity.dev/v1/routes/10')
+      await axios.get('https://www.hackcity.dev/v1/routes/10')
       .then((res) => {
         this.handleGatherRoutes(res.data.routes);
         console.log('gather routes success');
@@ -51,8 +52,6 @@ class HomeRoll extends Component {
   }
 
   render() {
-    console.log('[HOMEROLL] THIS.STATE.ROUTES', this.state.routes);
-
     return (
       <div className="home-roll uk-section">
         <div className="gridm">
@@ -60,9 +59,10 @@ class HomeRoll extends Component {
             <h2 className="bold black">Recent Sends</h2>
           </div>
           <div className="uk-grid uk-grid-collapse">
-            {this.state.routes.splice(0,6).map((route, index) => (
+            {this.state.routes ?
+              this.state.routes.splice(0,6).map((route, index) => (
               <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} comments={route.Comments} />
-            ))}
+            )) : <BarLoader color="#B60B31" />}
           </div>
         </div>
       </div>
