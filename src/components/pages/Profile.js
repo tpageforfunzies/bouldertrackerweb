@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
+import { BarLoader } from 'react-spinners';
 
 import './scss/Profile.scss';
 
@@ -13,14 +14,20 @@ class Profile extends Component {
       routes: [],
       email: '',
       name: '',
-      id: this.props.id
+      id: this.props.id,
+      loading: true
     }
+  }
 
+  componentDidMount() {
     this.fetchRoutes();
   }
 
   handleRoutes = routes => {
-    this.setState({ routes: routes.reverse() });
+    this.setState({
+       routes: routes.reverse(),
+       loading: false 
+    });
   }
 
   fetchRoutes = () => {
@@ -40,19 +47,20 @@ class Profile extends Component {
       })
       .catch((err) => {
         console.log(err);
+        this.setState({ loading: false });
       })
     } catch (e) {
       alert(e);
     }
   }
 
-  fetchUser = () => {
+  fetchUser = async () => {
     let url = 'https://www.hackcity.dev/v1/user/' + this.props.id.toString();
     let authHeader = { "Authorization": "Bearer ".concat(this.props.jwt) }
     console.log('[homeroll] profile->fetchuser', authHeader);
 
     try {
-      axios.get(url, {
+      await axios.get(url, {
         headers: authHeader
       })
       .then((res) => {
@@ -99,6 +107,10 @@ class Profile extends Component {
   render() {
     console.log('[PROFILE] THIS.STATE.ROUTES', this.state.routes);
 
+    if(this.state.loading) {
+
+    }
+
     if (this.props.id > 0) {
       return (
         <div>
@@ -132,7 +144,7 @@ class Profile extends Component {
                   this.state.routes.map((route, index) => (
                     <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} comments={route.Comments} routeid={route.ID} jwt={this.props.jwt} />
                   )) 
-                  :<h2>'No Routes found.'</h2> 
+                  : <BarLoader color="#B60B31" />
                   }
                 </div>
               </div>
