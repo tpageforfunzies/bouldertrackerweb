@@ -50,11 +50,14 @@ class Login extends Component {
       alert(e.message);
     }
   }
+
+  handleIsAuthed = () => {
+    this.props.history.push('/');
+  }
   
   render() {
-    console.log('LOGIN->isAuthed: ', this.props.isAuthed);
     if(this.props.isAuthed) {
-      return <Redirect push to='/' />;
+      this.handleIsAuthed();
     } else {
       return (
         <div className="login-page-container overlay">

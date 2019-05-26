@@ -7,6 +7,7 @@ import Login from './components/pages/Login';
 import Register from './components/pages/Register';
 import Profile from './components/pages/Profile';
 import PostRoute from './components/pages/PostRoute';
+import SingleRoute from './components/pages/SingleRoute';
 
 import './assets/scss/general.scss';
 
@@ -63,15 +64,17 @@ class App extends Component {
           
           <Header authed={this.state.authed} jwt={this.state.jwt} handleLogout={this.handleLogout} />
 
-          <Route exact path="/" component={() => <Home isAuthed={this.state.authed} jwt={this.state.jwt} id={this.state.id} />} />
+          <Route exact path="/" render={() => <Home isAuthed={this.state.authed} jwt={this.state.jwt} id={this.state.id} />} />
 
-          <Route exact path="/login" component={() => <Login isAuthed={this.state.authed} handleAuthed={this.handleAuthed}/>} />
+          <Route exact path="/login" render={() => <Login isAuthed={this.state.authed} handleAuthed={this.handleAuthed}/>} />
 
-          <Route exact path="/register" component={() => <Register isAuthed={this.state.authed} handleAuthed={this.handleAuthed}/>} />
+          <Route exact path="/register" render={() => <Register isAuthed={this.state.authed} handleAuthed={this.handleAuthed}/>} />
 
-          <Route exact path="/profile" component={() => <Profile id={this.state.id} jwt={this.state.jwt} />} />
+          <Route exact path="/profile" render={() => <Profile id={this.state.id} jwt={this.state.jwt} />} />
 
-          <Route exact path="/new-route" component={() => <PostRoute id={this.state.id} jwt={this.state.jwt} />} />
+          <Route exact path="/new-route" render={() => <PostRoute id={this.state.id} jwt={this.state.jwt} />} />
+
+          <Route path="/route/:id" render={() => <SingleRoute id={this.state.id} jwt={this.state.jwt} />} />
 
         </div>
       </Router>
