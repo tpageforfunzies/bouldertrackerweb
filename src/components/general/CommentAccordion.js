@@ -14,7 +14,7 @@ class CommentAccordion extends Component {
 
     }
 
-    const fetchUsernameFromComment = (id) => {
+    fetchUsernameFromComment = (id) => {
         let url = 'https://www.hackcity.dev/v1/user/' + this.props.id.toString();
         let authHeader = { "Authorization": "Bearer ".concat(this.props.jwt) }
     }

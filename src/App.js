@@ -44,7 +44,6 @@ class App extends Component {
       id: id,
       authed: true
     });
-    return <Redirect to="/" />;
   }
 
   handleLogout = () => {
@@ -61,7 +60,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          
+  
           <Header authed={this.state.authed} jwt={this.state.jwt} handleLogout={this.handleLogout} />
 
           <Route exact path="/" render={() => <Home isAuthed={this.state.authed} jwt={this.state.jwt} id={this.state.id} />} />
@@ -74,7 +73,7 @@ class App extends Component {
 
           <Route exact path="/new-route" render={() => <PostRoute id={this.state.id} jwt={this.state.jwt} />} />
 
-          <Route path="/route/:id" render={() => <SingleRoute id={this.state.id} jwt={this.state.jwt} />} />
+          <Route path="/route/:id" render={(props) => <SingleRoute userid={this.state.id} jwt={this.state.jwt} {...props} />} />
 
         </div>
       </Router>

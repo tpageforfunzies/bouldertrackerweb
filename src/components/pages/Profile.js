@@ -97,7 +97,7 @@ class Profile extends Component {
   }
 
   render() {
-    console.log('id: ', this.props.id);
+    console.log('[PROFILE] THIS.STATE.ROUTES', this.state.routes);
 
     if (this.props.id > 0) {
       return (
@@ -130,7 +130,7 @@ class Profile extends Component {
                 <div className="uk-grid uk-grid-small" data-uk-grid="masonry: true">
                   {this.state.routes ?
                   this.state.routes.map((route, index) => (
-                    <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} comments={route.Comments}/>
+                    <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} comments={route.Comments} routeid={route.ID} jwt={this.props.jwt} />
                   )) 
                   :<h2>'No Routes found.'</h2> 
                   }

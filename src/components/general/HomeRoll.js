@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import RouteBox from './RouteBox';
 
 class HomeRoll extends Component {
   constructor(props) {
@@ -50,14 +51,19 @@ class HomeRoll extends Component {
   }
 
   render() {
+    console.log('[HOMEROLL] THIS.STATE.ROUTES', this.state.routes);
 
     return (
       <div className="home-roll uk-section">
-        <div className="gridl">
+        <div className="gridm">
           <div className="title uk-text-center uk-text-left@m">
             <h2 className="bold black">Recent Sends</h2>
           </div>
-
+          <div className="uk-grid uk-grid-collapse">
+            {this.state.routes.splice(0,6).map((route, index) => (
+              <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} comments={route.Comments} />
+            ))}
+          </div>
         </div>
       </div>
     );

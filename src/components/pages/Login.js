@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { BrowserRouter as Redirect } from 'react-router-dom';
+import { BrowserRouter as Redirect, withRouter } from 'react-router-dom';
 
 import './scss/Login.scss';
 
@@ -52,43 +52,43 @@ class Login extends Component {
   }
 
   handleIsAuthed = () => {
-    this.props.history.push('/');
+    this.props.history.push('/profile');
   }
   
   render() {
     if(this.props.isAuthed) {
       this.handleIsAuthed();
-    } else {
-      return (
-        <div className="login-page-container overlay">
-          <div className="login-form">
-            <h2 className="bold">Login</h2>
-            <form onSubmit={this.handleSubmit}>
-              <input 
-                type="text" 
-                name="email" 
-                placeholder="Email Address"
-                onChange={this.handleEmailChange.bind(this)}
-                value={this.state.email} 
-              />
-              <input 
-                type="password" 
-                name="password" 
-                placeholder="Password"
-                onChange={this.handlePasswordChange.bind(this)}
-                value={this.state.password} 
-              />
-              <input 
-                type="submit" 
-                value="Submit" 
-              />
-            </form>
-          </div>
-        </div>
-      )
     }
+    return (
+      <div className="login-page-container overlay">
+        <div className="login-form">
+          <h2 className="bold">Login</h2>
+          <form onSubmit={this.handleSubmit}>
+            <input 
+              type="text" 
+              name="email" 
+              placeholder="Email Address"
+              onChange={this.handleEmailChange.bind(this)}
+              value={this.state.email} 
+            />
+            <input 
+              type="password" 
+              name="password" 
+              placeholder="Password"
+              onChange={this.handlePasswordChange.bind(this)}
+              value={this.state.password} 
+            />
+            <input 
+              type="submit" 
+              value="Submit" 
+            />
+          </form>
+        </div>
+      </div>
+    )
+    
   }
 }
 
 
-export default Login;
+export default withRouter(Login);
