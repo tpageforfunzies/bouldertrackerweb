@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Redirect, withRouter } from 'react-router-dom';
 import axios from 'axios';
+import StarRatings from 'react-star-ratings';
 
 import './scss/PostRoute.scss';
 
@@ -13,7 +14,8 @@ class PostRoute extends Component {
       grade: '',
       id: this.props.id,
       error: false,
-      goBack: false
+      goBack: false,
+      star_rating: 0
     }
   }
 
@@ -27,6 +29,12 @@ class PostRoute extends Component {
     this.setState({
       grade: e.target.value
     });
+  }
+
+  handleRatingChange = rating => {
+    this.setState({
+      star_rating: rating
+    })
   }
 
   handleSubmit = (e) => {
@@ -84,6 +92,14 @@ class PostRoute extends Component {
               placeholder="Route Grade"
               onChange={this.handleGradeChange.bind(this)}
               value={this.state.password} 
+            />
+            <p className="bold">Your rating:</p>
+            <StarRatings
+              rating={this.state.star_rating}
+              starRatedColor="#B60B31"
+              changeRating={this.handleRatingChange.bind(this)}
+              numberOfStars={5}
+              name='rating'
             />
             <input 
               type="submit" 
