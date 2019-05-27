@@ -72,11 +72,12 @@ class SingleRoute extends Component {
         }
       })
       .then((res) => {
-        console.log(res);
+        console.log('[SingleRoute] Comment submit success', res.data);
         this.handleRoute(res.data.route);
       })
       .catch((err) => {
         console.log(err);
+        console.log('[SingleRoute] Comment submit failure', err.message);
       })
     } catch(e) {
       console.log(e);
@@ -127,10 +128,10 @@ class SingleRoute extends Component {
             {this.state.route ? (
               <div className="single-route">
                 <div className="uk-grid uk-grid-collapse">
-                  <div className="uk-width-1-1 uk-width-1-2 image">
+                  <div className="uk-width-1-1 uk-width-1-2@m image">
                     <img src="https://placekitten.com/500/600" alt="single route placeholder" />
                   </div>
-                  <div className="uk-width-1-1 uk-width-1-2 data">
+                  <div className="uk-width-1-1 uk-width-1-2@m data">
                     <h2 className="bold black">{this.state.route.name}</h2>
                     <h4 className="black">V{this.state.route.grade}</h4>
                     {comments}

@@ -14,7 +14,8 @@
       display: block;
       margin: 10px auto;
       box-shadow: none;
-      padding: 10px 20px;
+      width: 90%;
+      padding: 10px 5%;
       border: 3px solid $brandone;
       border-radius: 5px;
     }
@@ -35,6 +36,10 @@
         color: white;
         cursor: pointer;
       }
+    }
+    p {
+      margin-bottom: 3px;
+      margin-top: 10px;
     }
   }
 }
