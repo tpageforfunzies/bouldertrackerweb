@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, withRouter } from 'react-router-dom';
 
 import './scss/Header.scss';
 
 class Header extends Component  {
+
   render() {
     if(this.props.authed) {
       return (
@@ -40,7 +41,7 @@ class Header extends Component  {
         <div className="uk-navbar-left">
           <ul>
             <li>
-              <h1 className="white bold">BoulderTracker</h1>
+              <Link to="/" className="white bold brand">BoulderTracker</Link>
             </li>
           </ul>
         </div>
@@ -59,4 +60,4 @@ class Header extends Component  {
   }
 }
 
-export default Header;
+export default withRouter(Header);
