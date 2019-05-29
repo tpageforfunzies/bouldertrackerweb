@@ -42,7 +42,7 @@ class Home extends Component {
     } else {
       buttons = (
             <div>
-              <Link to="/" className="button white-outline hm">Discover</Link>
+              {/* <Link to="/" className="button white-outline hm">Discover</Link> */}
               <Link to="/login" className="button white-outline hm">Login</Link>
               <Link to="/register" className="button white-outline hm">Register</Link>
             </div>

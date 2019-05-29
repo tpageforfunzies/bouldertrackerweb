@@ -5,6 +5,7 @@ import StarRatings from 'react-star-ratings';
 import Select from 'react-select';
 
 import './scss/PostRoute.scss';
+import { runInThisContext } from 'vm';
 
 class PostRoute extends Component {
   constructor(props) {
@@ -18,7 +19,17 @@ class PostRoute extends Component {
       goBack: false,
       star_rating: 0,
       numMoves: 0,
+      style: '',
       beta: [],
+      typeOptions: [
+        { value: 'Slab', label: 'Slab'},
+        { value: 'Traverse', label: 'Traverse'},
+        { value: 'Overhung', label: 'Overhung'},
+        { value: 'Cave', label: 'Cave/Ceiling'},
+        { value: 'Balance', label: 'Balance'},
+        { value: 'Competition', label: 'Competition Style'},
+        { value: 'Crack', label: 'Crack'}
+      ],
       numMovesOptions: [
         { value: 0, label: '0'},
         { value: 1, label: '1'},
@@ -86,7 +97,9 @@ class PostRoute extends Component {
         data: {
           name: this.state.name,
           grade: this.state.grade,
-          user_id: this.state.id 
+          user_id: this.state.id,
+          rating: this.state.star_rating,
+          style: this.state.style
         }
       })
       .then((res) => {
@@ -120,6 +133,13 @@ class PostRoute extends Component {
 
   handleMoveOptionsChange = option => {
     console.log('[handleMoveOptions]', option.value)
+  }
+
+  handleTypeChange = option => {
+    console.log('[handleTypeChange]', option.value);
+    this.setState({
+      style: option.value
+    });
   }
 
   render() {
@@ -175,6 +195,13 @@ class PostRoute extends Component {
               placeholder="Route Grade"
               onChange={this.handleGradeChange.bind(this)}
               value={this.state.password} 
+            />
+            <h3 className="bold black">Type of Climb:</h3>
+            <Select 
+              options={this.state.typeOptions} 
+              className="moves-selector"
+              defaultValue={this.state.typeOptions[0]}
+              onChange={this.handleTypeChange.bind(this)}
             />
             <h3 className="bold black">Your rating:</h3>
             <StarRatings

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, withRouter } from 'react-router-dom';
 
 import Header from './components/general/Header';
 import Home from './components/pages/Home';
@@ -59,7 +59,6 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
   
           <Header authed={this.state.authed} jwt={this.state.jwt} handleLogout={this.handleLogout} />
 
@@ -74,8 +73,6 @@ class App extends Component {
           <Route exact path="/new-route" render={() => <PostRoute id={this.state.id} jwt={this.state.jwt} />} />
 
           <Route path="/route/:id" render={(props) => <SingleRoute userid={this.state.id} jwt={this.state.jwt} {...props} />} />
-
-        </div>
       </Router>
     );
   }

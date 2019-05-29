@@ -6,6 +6,7 @@ import CommentAccordion from '../general/CommentAccordion';
 
 import './scss/SingleRoute.scss';
 import { BarLoader } from 'react-spinners';
+import StarRatings from 'react-star-ratings/build/star-ratings';
 
 class SingleRoute extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class SingleRoute extends Component {
     this.state = {
       route: {},
       id: this.props.id,
-      jwt: localStorage.getItem('jwt'),
+      jwt: this.props.jwt,
       comment: ''
     }
 
@@ -134,6 +135,18 @@ class SingleRoute extends Component {
                   <div className="uk-width-1-1 uk-width-1-2@m data">
                     <h2 className="bold black">{this.state.route.name}</h2>
                     <h4 className="black">V{this.state.route.grade}</h4>
+                    {this.state.route.star_rating ? (
+                      <StarRatings rating={this.state.route.star_rating} starRatedColor="#B60B31" />
+                    ) : (
+                      <h4 className="bold color-one">Problem not rated</h4>
+                    )
+                    }
+                    {this.state.route.star_rating ? (
+                      <h4 className="black"><span className="bold">Problem Style:</span>{this.state.route.style}</h4>
+                    ) : (
+                      <h4 className="color-one">Problem style not entered</h4>
+                    )
+                    }
                     {comments}
                     {commentform}
                   </div>

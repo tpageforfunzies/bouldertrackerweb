@@ -48,7 +48,6 @@
     }
 
     .moves-selector {
-      border: 3px solid $brandone;
       border-radius: 5px;
     }
     .bodypart-selector,
@@ -56,6 +55,7 @@
       width: 45%;
       margin: 0 auto;
       display: inline-block;
+      border-radius: 5px;
     }
 
     .betaForm-container {
