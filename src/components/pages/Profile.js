@@ -142,7 +142,7 @@ class Profile extends Component {
                 <div className="uk-grid uk-grid-small" data-uk-grid="masonry: true">
                   {this.state.routes ?
                   this.state.routes.map((route, index) => (
-                    <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} comments={route.Comments} routeid={route.ID} jwt={this.props.jwt} />
+                    <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} comments={route.Comments} routeid={route.ID} jwt={this.props.jwt} userID={this.props.id} />
                   )) 
                   : <BarLoader color="#B60B31" />
                   }

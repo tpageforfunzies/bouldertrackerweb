@@ -26,7 +26,7 @@ class App extends Component {
   checkAuth = () => {
     console.log('CHECKING AUTH');
     let jwt = localStorage.getItem('jwt');
-    if(jwt) {
+    if(jwt && localStorage.getItem('id')) {
       if(localStorage.getItem('jwt')) {
         console.log('JWT FOUND');
         this.setState({
@@ -68,11 +68,11 @@ class App extends Component {
 
           <Route exact path="/register" render={() => <Register isAuthed={this.state.authed} handleAuthed={this.handleAuthed}/>} />
 
-          <Route exact path="/profile" render={() => <Profile id={this.state.id} jwt={this.state.jwt} />} />
+          <Route exact path="/profile" render={(props) => <Profile id={this.state.id} jwt={this.state.jwt} {...props} />} />
 
           <Route exact path="/new-route" render={() => <PostRoute id={this.state.id} jwt={this.state.jwt} />} />
 
-          <Route path="/route/:id" render={(props) => <SingleRoute userid={this.state.id} jwt={this.state.jwt} {...props} />} />
+          <Route path="/route/:id" render={(props) => <SingleRoute isAuthed={this.state.authed} userid={this.state.id} jwt={this.state.jwt} {...props} />} />
       </Router>
     );
   }

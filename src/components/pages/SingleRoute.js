@@ -16,6 +16,7 @@ class SingleRoute extends Component {
       route: {},
       id: this.props.id,
       jwt: this.props.jwt,
+      authed: this.props.isAuthed,
       comment: ''
     }
 

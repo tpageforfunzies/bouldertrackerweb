@@ -23,17 +23,15 @@ function RouteBox(props) {
 
   return (
     <div className="single-box uk-width-1-1 uk-width-1-3@s">
-      <a href={routeurl} >
         <div className="container">
           <img src="https://placekitten.com/400/300" alt="placeholder route" />
           <div className="text">
-            <h2 className="bold">{props.name}</h2>
+            <NavLink className="bold" jwt={props.jwt} userID={props.id}>{props.name}</NavLink>
             <h4>V{props.grade}</h4>
             <h4>{sendDate.toDateString()}</h4>
             {comment}
           </div>
         </div>
-      </a>
     </div>
   );
 }

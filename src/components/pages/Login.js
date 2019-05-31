@@ -32,6 +32,9 @@ class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    
+    console.log('handling submit, state', this.state);
+
     try {
       axios.post('https://www.hackcity.dev/v1/user/login', {
         email: this.state.email,
