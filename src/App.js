@@ -73,6 +73,7 @@ class App extends Component {
           <Route exact path="/new-route" render={() => <PostRoute id={this.state.id} jwt={this.state.jwt} />} />
 
           <Route path="/route/:id" render={(props) => <SingleRoute isAuthed={this.state.authed} userid={this.state.id} jwt={this.state.jwt} {...props} />} />
+          
       </Router>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { BrowserRouter as Redirect, withRouter } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 
 import './scss/Login.scss';
 
