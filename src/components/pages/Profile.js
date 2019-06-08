@@ -122,13 +122,12 @@ class Profile extends Component {
     formData.append("picture", file);
 
     let url = "https://www.hackcity.dev/v1/userpic/" + this.state.id;
-    let authHeader = {  }
     axios.post(url, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            "Authorization": "Bearer ".concat(this.props.jwt)
-          }
-        })
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Authorization": "Bearer ".concat(this.props.jwt)
+        }
+      })
     .then((res) => {
       this.setState({ imageLink: res.data })
       console.log(res);
