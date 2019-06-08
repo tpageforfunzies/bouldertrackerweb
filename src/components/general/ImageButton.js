@@ -13,7 +13,7 @@ class ImageButton extends Component {
         <label htmlFor='file-upload' class="custom-file-upload">
           Upload Profile Picture
         </label>
-        <input type='file' id='file-upload' accept="*;capture=camera,camcorder,filesystem" onChange={this.props.updateProfilePicProp} /> 
+        <input type='file' id='file-upload' accept="image/*;capture=camera,camcorder,filesystem" onChange={this.props.updateProfilePicProp} /> 
       </div>
     );
   }
