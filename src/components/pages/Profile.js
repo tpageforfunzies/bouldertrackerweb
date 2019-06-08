@@ -63,7 +63,7 @@ class Profile extends Component {
   }
 
   fetchUser = async () => {
-    let url = 'http://localhost/v1/user/' + this.props.id.toString();
+    let url = 'https://www.hackcity.dev/v1/user/' + this.props.id.toString();
     let authHeader = { "Authorization": "Bearer ".concat(this.props.jwt) }
 
     try {
@@ -111,7 +111,7 @@ class Profile extends Component {
     return monthNames[Object.keys(monthCounts).find(key => monthCounts[key] === Math.max(...Object.values(monthCounts)))];;
   }
 
-  // event handler for input passed as a prop to the imagebutton component
+  // event handler for input, passed as a prop to the imagebutton component
   updateProfilePic = e => {
     // only grabs first file for now, set up to do multiple
     const file = e.target.files[0];
@@ -121,7 +121,7 @@ class Profile extends Component {
     let formData = new FormData();
     formData.append("picture", file);
 
-    let url = "http://localhost/v1/userpic/" + this.state.id;
+    let url = "https://www.hackcity.dev/v1/userpic/" + this.state.id;
     let authHeader = {  }
     axios.post(url, formData, {
           headers: {
@@ -153,9 +153,8 @@ class Profile extends Component {
               <div className="uk-section">
                 <h1 className="bold white">Profile</h1>
                 <img className="avatar" src={imageLink} alt="placeholder avatar" />
-                <div className='button fadein'>
-                  <ImageButton updateProfilePicProp={this.updateProfilePic} />
-                </div>
+                // STYLE MEEEEE
+                <ImageButton updateProfilePicProp={this.updateProfilePic} />
                 <h2 className="bold white">Jeff Hooton</h2>
                 <p className="white"><span className="bold">Email:</span> jeffreyd@hooton.com</p>
                 <div className="whiteline"></div>
