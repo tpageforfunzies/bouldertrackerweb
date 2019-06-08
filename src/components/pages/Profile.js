@@ -6,21 +6,25 @@ import { BarLoader } from 'react-spinners';
 import './scss/Profile.scss';
 
 import RouteBox from '../general/RouteBox';
+import ImageButton from '../general/ImageButton'
 
 class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
       routes: [],
+      user: {},
       email: '',
       name: '',
       id: this.props.id,
+      imageLink: '',
       loading: true
     }
   }
 
   componentDidMount() {
     this.fetchRoutes();
+    this.fetchUser();
   }
 
   handleRoutes = routes => {
@@ -30,12 +34,17 @@ class Profile extends Component {
     });
   }
 
+  handleUser = user => {
+    this.setState({
+      user: user,
+      loading: false,
+      imageLink: user.ImageUrl === '' ? '' : user.ImageUrl
+    })
+  }
+
   fetchRoutes = () => {
     let url = 'https://www.hackcity.dev/v1/user/' + this.props.id.toString() + '/routes';
     let authHeader = { "Authorization": "Bearer ".concat(this.props.jwt) }
-    
-    console.log('fetchRoutes->jwt', this.props.jwt);
-    console.log('[homeroll] profile->fetchroutes', authHeader);
     
     try {
       axios.get(url, {
@@ -43,7 +52,6 @@ class Profile extends Component {
       })
       .then((res) => {
         this.handleRoutes(res.data.routes);
-        console.log('post-axios route gather:', this.state.routes);
       })
       .catch((err) => {
         console.log(err);
@@ -55,17 +63,16 @@ class Profile extends Component {
   }
 
   fetchUser = async () => {
-    let url = 'https://www.hackcity.dev/v1/user/' + this.props.id.toString();
+    let url = 'http://localhost/v1/user/' + this.props.id.toString();
     let authHeader = { "Authorization": "Bearer ".concat(this.props.jwt) }
-    console.log('[homeroll] profile->fetchuser', authHeader);
 
     try {
       await axios.get(url, {
         headers: authHeader
       })
       .then((res) => {
-        this.handleRoutes(res.data.routes);
-        console.log('post-axios user gather:', this.state.routes);
+        this.handleUser(res.data.user);
+        console.log('post-axios user gather:', this.state.user);
       })
       .catch((err) => {
         console.log(err);
@@ -104,11 +111,38 @@ class Profile extends Component {
     return monthNames[Object.keys(monthCounts).find(key => monthCounts[key] === Math.max(...Object.values(monthCounts)))];;
   }
 
+  // event handler for input passed as a prop to the imagebutton component
+  updateProfilePic = e => {
+    // only grabs first file for now, set up to do multiple
+    const file = e.target.files[0];
+    if (file === undefined) {
+      return
+    }
+    let formData = new FormData();
+    formData.append("picture", file);
+
+    let url = "http://localhost/v1/userpic/" + this.state.id;
+    let authHeader = {  }
+    axios.post(url, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            "Authorization": "Bearer ".concat(this.props.jwt)
+          }
+        })
+    .then((res) => {
+      this.setState({ imageLink: res.data })
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
+
   render() {
-    console.log('[PROFILE] THIS.STATE.ROUTES', this.state.routes);
-
-    if(this.state.loading) {
-
+    let imageLink = this.state.imageLink
+    if(imageLink === "") {
+      imageLink = "https://placekitten.com/250/250";
     }
 
     if (this.props.id > 0) {
@@ -118,7 +152,10 @@ class Profile extends Component {
             <div className="uk-width-1-1 uk-width-1-3@m uk-text-center uk-text-left@m profile bgtwo">
               <div className="uk-section">
                 <h1 className="bold white">Profile</h1>
-                <img className="avatar" src="https://placekitten.com/250/250" alt="placeholder avatar" />
+                <img className="avatar" src={imageLink} alt="placeholder avatar" />
+                <div className='button fadein'>
+                  <ImageButton updateProfilePicProp={this.updateProfilePic} />
+                </div>
                 <h2 className="bold white">Jeff Hooton</h2>
                 <p className="white"><span className="bold">Email:</span> jeffreyd@hooton.com</p>
                 <div className="whiteline"></div>
