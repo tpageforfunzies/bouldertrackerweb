@@ -1,16 +1,18 @@
 @import '../../../assets/scss/general';
 
 .single-box {
-  margin-top: 30px;
-
+  margin-top: 20px;
+    
   .container {
     border-top: 6px solid $brandone;
+    background: white;
     box-shadow: 0 0 10px rgba(0,0,0,0.55);
     max-width: 95%;
-    margin: 0 auto;
+    margin: 10px auto;
+    transition: .25s all ease-in-out;
     
     .text {
-      padding: 5px 20px;
+      padding: 10px 20px;
       text-align: left;
 
       h2 {
@@ -20,9 +22,19 @@
       h4 {
         margin-top: 2px;
         margin-bottom: 5px;
+      }
 
+      .routelink {
+        z-index: 1000;
       }
     }
-    
   }
+
+  &:hover {
+    .container {
+      transform: scale(1.005);
+      box-shadow: 0 0 14px rgba(0,0,0,0.75);
+    }
+  }
+  
 }

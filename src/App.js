@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, withRouter } from 'react-router-dom';
 
 import Header from './components/general/Header';
 import Home from './components/pages/Home';
@@ -7,6 +7,7 @@ import Login from './components/pages/Login';
 import Register from './components/pages/Register';
 import Profile from './components/pages/Profile';
 import PostRoute from './components/pages/PostRoute';
+import SingleRoute from './components/pages/SingleRoute';
 
 import './assets/scss/general.scss';
 
@@ -25,7 +26,7 @@ class App extends Component {
   checkAuth = () => {
     console.log('CHECKING AUTH');
     let jwt = localStorage.getItem('jwt');
-    if(jwt) {
+    if(jwt && localStorage.getItem('id')) {
       if(localStorage.getItem('jwt')) {
         console.log('JWT FOUND');
         this.setState({
@@ -58,21 +59,21 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
-          
+  
           <Header authed={this.state.authed} jwt={this.state.jwt} handleLogout={this.handleLogout} />
 
-          <Route exact path="/" component={() => <Home isAuthed={this.state.authed} jwt={this.state.jwt} id={this.state.id} />} />
+          <Route exact path="/" render={() => <Home isAuthed={this.state.authed} jwt={this.state.jwt} id={this.state.id} />} />
 
-          <Route exact path="/login" component={() => <Login isAuthed={this.state.authed} handleAuthed={this.handleAuthed}/>} />
+          <Route exact path="/login" render={() => <Login isAuthed={this.state.authed} handleAuthed={this.handleAuthed}/>} />
 
-          <Route exact path="/register" component={() => <Register isAuthed={this.state.authed} handleAuthed={this.handleAuthed}/>} />
+          <Route exact path="/register" render={() => <Register isAuthed={this.state.authed} handleAuthed={this.handleAuthed}/>} />
 
-          <Route exact path="/profile" component={() => <Profile id={this.state.id} jwt={this.state.jwt} />} />
+          <Route exact path="/profile" render={(props) => <Profile id={this.state.id} jwt={this.state.jwt} {...props} />} />
 
-          <Route exact path="/new-route" component={() => <PostRoute id={this.state.id} jwt={this.state.jwt} />} />
+          <Route exact path="/new-route" render={() => <PostRoute id={this.state.id} jwt={this.state.jwt} />} />
 
-        </div>
+          <Route path="/route/:id" render={(props) => <SingleRoute isAuthed={this.state.authed} userid={this.state.id} jwt={this.state.jwt} {...props} />} />
+          
       </Router>
     );
   }

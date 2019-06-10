@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { BrowserRouter as Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 
 import './scss/Login.scss';
 
@@ -32,6 +32,9 @@ class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    
+    console.log('handling submit, state', this.state);
+
     try {
       axios.post('https://www.hackcity.dev/v1/user/login', {
         email: this.state.email,
@@ -50,42 +53,45 @@ class Login extends Component {
       alert(e.message);
     }
   }
+
+  handleIsAuthed = () => {
+    this.props.history.push('/profile');
+  }
   
   render() {
-    console.log('LOGIN->isAuthed: ', this.props.isAuthed);
     if(this.props.isAuthed) {
-      return <Redirect push to='/' />;
-    } else {
-      return (
-        <div className="login-page-container overlay">
-          <div className="login-form">
-            <h2 className="bold">Login</h2>
-            <form onSubmit={this.handleSubmit}>
-              <input 
-                type="text" 
-                name="email" 
-                placeholder="Email Address"
-                onChange={this.handleEmailChange.bind(this)}
-                value={this.state.email} 
-              />
-              <input 
-                type="password" 
-                name="password" 
-                placeholder="Password"
-                onChange={this.handlePasswordChange.bind(this)}
-                value={this.state.password} 
-              />
-              <input 
-                type="submit" 
-                value="Submit" 
-              />
-            </form>
-          </div>
-        </div>
-      )
+      this.handleIsAuthed();
     }
+    return (
+      <div className="login-page-container overlay">
+        <div className="login-form">
+          <h2 className="bold">Login</h2>
+          <form onSubmit={this.handleSubmit}>
+            <input 
+              type="text" 
+              name="email" 
+              placeholder="Email Address"
+              onChange={this.handleEmailChange.bind(this)}
+              value={this.state.email} 
+            />
+            <input 
+              type="password" 
+              name="password" 
+              placeholder="Password"
+              onChange={this.handlePasswordChange.bind(this)}
+              value={this.state.password} 
+            />
+            <input 
+              type="submit" 
+              value="Submit" 
+            />
+          </form>
+        </div>
+      </div>
+    )
+    
   }
 }
 
 
-export default Login;
+export default withRouter(Login);

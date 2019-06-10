@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import './scss/Register.scss';
-import { BrowserRouter as Redirect } from 'react-router-dom';
+import { BrowserRouter as Redirect, withRouter } from 'react-router-dom';
 
-export default class Register extends Component {
+class Register extends Component {
   constructor(props) {
     super(props);
 
@@ -57,9 +57,13 @@ export default class Register extends Component {
     }
   }
 
+  handleIsAuthed = () => {
+    this.props.history.push('/');
+  }
+
   render() {
     if(this.state.isAuthed) {
-      return <Redirect to='/' />;
+      this.handleIsAuthed();
     } else {
       return (
         <div className="register-page-container overlay">
@@ -99,3 +103,5 @@ export default class Register extends Component {
     }
   }
 }
+
+export default withRouter(Register);

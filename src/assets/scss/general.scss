@@ -18,6 +18,14 @@ $brandtwo: #0B3954;
   color: white;
 }
 
+.color-one {
+  color: $brandone;
+}
+
+.black {
+  color: black;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -61,4 +69,25 @@ $brandtwo: #0B3954;
   height: 3px;
   background: white;
   margin: 10px 0;
+}
+
+.blackline-100 {
+  width: 100%;
+  height: 3px;
+  background: black;
+  margin: 10px 0;
+}
+
+.gridl {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: block;
+  padding: 0 30px;
+}
+
+.gridm {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: block;
+  padding: 0 30px;
 }

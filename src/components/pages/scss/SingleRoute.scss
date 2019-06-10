@@ -1,0 +1,63 @@
+@import '../../../assets/scss/general';
+
+.single-route-page {
+  .uk-section {
+    .gridl {
+      .single-route {
+        border-top: 6px solid $brandone;
+        background: white;
+        position: fixed;
+        top: 50%;
+        padding: 30px 40px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.55);
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        .uk-grid {
+          .uk-width-1-1 {
+            padding: 10px;
+            
+            &.data {
+              h2 {
+                margin-bottom: 5px;
+              }
+
+              h4 {
+                margin-top: 5px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.comment-form-container {
+  position: relative;
+  height: 100%;
+
+  .comment-form {
+    display: block;
+    width: 100%;
+    position: absolute;
+    margin-top: 20px;
+  
+    input[type="text"] {
+      background: white;
+      border: 3px solid $brandone;
+      padding: 10px 20px;
+      display: inline-block;
+      width: 55%;
+    }
+  
+    input[type="submit"] {
+      display: inline-block;
+      background: $brandone;
+      border: 3px solid $brandone;
+      padding: 10px;
+      color: white;
+      margin-left: 10px;
+      font-weight: bold;
+    }
+  }
+}
