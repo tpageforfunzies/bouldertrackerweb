@@ -8,6 +8,7 @@ import Register from './components/pages/Register';
 import Profile from './components/pages/Profile';
 import PostRoute from './components/pages/PostRoute';
 import SingleRoute from './components/pages/SingleRoute';
+import Eventually from './components/pages/Eventually';
 
 import './assets/scss/general.scss';
 
@@ -71,6 +72,8 @@ class App extends Component {
           <Route exact path="/profile" render={(props) => <Profile id={this.state.id} jwt={this.state.jwt} {...props} />} />
 
           <Route exact path="/new-route" render={() => <PostRoute id={this.state.id} jwt={this.state.jwt} />} />
+
+          <Route path="/eventually/:destination" render={() => <Eventually jwt={this.state.jwt} />} />
 
           <Route path="/route/:id" render={(props) => <SingleRoute isAuthed={this.state.authed} userid={this.state.id} jwt={this.state.jwt} {...props} />} />
           

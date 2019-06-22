@@ -24,7 +24,7 @@ class HomeRoll extends Component {
     console.log('[HomeRoll] Gathered Routes', this.state.routes);
   }
 
-  gatherUser =() => {
+  gatherUser = () => {
     if(this.props.authed) {
       this.setState({
         authed: true,
@@ -61,7 +61,7 @@ class HomeRoll extends Component {
           <div className="uk-grid uk-grid-collapse">
             {this.state.routes ?
               this.state.routes.splice(0,6).map((route, index) => (
-              <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} comments={route.Comments} />
+              <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} routeid={route.ID} imageUrl={route.ImageUrl}/>
             )) : <BarLoader color="#B60B31" />}
           </div>
         </div>
