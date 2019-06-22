@@ -9,9 +9,9 @@ class ImageButton extends Component {
 
   render() {
     return (
-      <div className='white bold'>
+      <div className='image-upload'>
         <label htmlFor='file-upload' class="custom-file-upload">
-          Upload Profile Picture
+          {this.props.title}
         </label>
         <input type='file' id='file-upload' accept="image/*;capture=camera,camcorder,filesystem" onChange={this.props.updatePic} /> 
       </div>

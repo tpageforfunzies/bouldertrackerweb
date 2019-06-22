@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import CommentAccordion from './CommentAccordion';
 
+import Comment from '../../assets/images/comment.png';
+
 import './scss/RouteBox.scss';
 
 class RouteBox extends Component {
@@ -34,15 +36,29 @@ class RouteBox extends Component {
     }
 
     return (
-      <div className="single-box uk-width-1-1 uk-width-1-3@s">
+
+      <div className="single-box uk-width-1-1">
         <Link to={this.state.routeurl}>
-          <div className="container">
-            <img src={imageUrl} alt="placeholder route" />
-            <div className="text">
-              <h2 className="bold">{this.props.name}</h2>
-              <h4>V{this.props.grade}</h4>
-              <h4>{this.state.sendDate.toDateString()}</h4>
-              {comment}
+          <div className="container bgtwo">
+            <div className ="uk-grid uk-grid-collapse">
+              <div className="uk-width-1-5 image">
+                <img src={imageUrl} />
+              </div>
+              <div className="left-container uk-text-left uk-width-3-5">
+                <h2 className="bold">{this.props.name}</h2>
+                <span className="sent">
+                  {this.state.sendDate.toDateString()}
+                </span>
+              </div>
+              <div className="right-container uk-width-1-5">
+                <span className="grade">
+                  V{this.props.grade}
+                </span>
+                <br></br>
+                <span className="comments">
+                  {this.props.comments.length}
+                </span>
+              </div>
             </div>
           </div>
         </Link>

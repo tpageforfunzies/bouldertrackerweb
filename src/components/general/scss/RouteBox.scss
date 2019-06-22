@@ -1,40 +1,106 @@
 @import '../../../assets/scss/general';
 
 .single-box {
-  margin-top: 20px;
-    
-  .container {
-    border-top: 6px solid $brandone;
-    background: white;
-    box-shadow: 0 0 10px rgba(0,0,0,0.55);
-    max-width: 95%;
-    margin: 10px auto;
-    transition: .25s all ease-in-out;
-    
-    .text {
-      padding: 10px 20px;
-      text-align: left;
+  margin-top: 5px;
 
-      h2 {
-        margin-bottom: 2px;
-      }
-  
-      h4 {
-        margin-top: 2px;
-        margin-bottom: 5px;
-      }
-
-      .routelink {
-        z-index: 1000;
-      }
-    }
-  }
-
-  &:hover {
+  a {
     .container {
-      transform: scale(1.005);
-      box-shadow: 0 0 14px rgba(0,0,0,0.75);
+      border-radius: 10px;
+      box-shadow: 0 0 14px rgba(0, 0, 0, 0.45);
+      padding: 10px 20px;
+      transition: 0.35s all ease-in-out;
+      position: relative;
+      .uk-grid {
+
+        .image {
+          padding: 5px 10px;
+          overflow: hidden;
+          text-align: center;
+
+          img {
+            max-height: 80px;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.45);
+          }
+        }
+        .left-container {
+    
+          h2 {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 36px;
+          }
+    
+          span.sent {
+            display: block;
+            color: white;
+            margin-top: 8px;
+            margin-bottom: 0;
+          }
+        }
+    
+        .right-container {
+          text-align: right;
+
+          .grade {
+            display: block;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            margin-top: 3px;
+          }
+    
+          .comments {
+            margin-top: -15px;
+            display: block;
+            text-align: right;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            padding-top: 3px;
+            padding-bottom: 7px;
+            padding-left: 18px;
+            padding-right: 18px;
+            float: right;
+            background-image: url(../../../assets/images/comment.png);
+            background-size: cover;
+            background-position: 50% 50%;
+          }
+        }
+    
+      }
     }
-  }
-  
+    &:hover {
+      text-decoration: none;
+
+      .container {
+        transform: scale(1.01);
+
+        .uk-grid {
+          .left-container {
+            h2,
+            span {
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+  }  
 }
+
+// <div className="single-box uk-width-1-1">
+//   <Link to={this.state.routeurl}>
+//     <div className="container">
+//       <img src={imageUrl} alt="placeholder route" />
+//       <div className="text">
+//         <h2 className="bold">{this.props.name}</h2>
+//         <h4>V{this.props.grade}</h4>
+//         <h4>{this.state.sendDate.toDateString()}</h4>
+//         {comment}
+//       </div>
+//     </div>
+//   </Link>
+// </div>

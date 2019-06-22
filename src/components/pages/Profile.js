@@ -5,6 +5,8 @@ import { BarLoader } from 'react-spinners';
 
 import './scss/Profile.scss';
 
+import Add from '../../assets/images/add.png';
+
 import RouteBox from '../general/RouteBox';
 import ImageButton from '../general/ImageButton'
 
@@ -181,39 +183,68 @@ class Profile extends Component {
       return (
         <div>
           <div className="uk-grid uk-grid-collapse profile-container">
-            <div className="uk-width-1-1 uk-width-1-3@m uk-text-center uk-text-left@m profile bgtwo">
+            <div className="uk-width-1-1 uk-width-1-6@m uk-text-center uk-text-left@m profile bgtwo">
               <div className="uk-section">
                 <h1 className="bold white">Profile</h1>
                 <img className="avatar" src={imageLink} alt="placeholder avatar" />
-                // STYLE MEEEEE
-                <ImageButton updatePic={this.updateProfilePic} />
+                
+                <ImageButton updatePic={this.updateProfilePic} title="Change Avatar" />
                 <h2 className="bold white">{this.state.user.name}</h2>
                 <p className="white"><span className="bold">Email:</span> {this.state.user.email}</p>
                 <div className="whiteline"></div>
                 <h3 className="bold white">Statistics</h3>
                 <p className="white"><span className="bold">Sends:</span> {this.state.routes.length}</p>
-                <p className="white"><span className="bold">Average Difficulty of Route Sent:</span> V{this.calculateAverage()} </p>
-                <p className="white"><span className="bold">Most Difficult Route Sent:</span> V{this.calculateHighest()} </p>
+                <p className="white"><span className="bold">Average Difficulty:</span> V{this.calculateAverage()} </p>
+                <p className="white"><span className="bold">Most Difficult:</span> V{this.calculateHighest()} </p>
                 <p className="white"><span className="bold">Most Active Month:</span> {this.calculateMostFrequentMonth()}</p>
               </div>
             </div>
-            <div className="uk-width-1-1 uk-width-2-3@m routes">
+            <div className="uk-width-1-1 uk-width-5-6@m routes bgone">
               <div className="uk-section">
-              <div className="uk-grid">
-                  <div className="uk-width-1-1 uk-width-1-2@s uk-text-center uk-text-left@s">
-                    <h1 className="bold">My Routes</h1>
+                <div className="uk-grid">
+
+
+
+
+                  <div className="uk-width-1-1 uk-width-1-2@s left uk-text-center uk-text-left@s">
+                    <div className="uk-grid uk-grid-collapse">
+                      <div className="uk-width-2-3 uk-text-left">
+                        <h1 className="bold white">My Routes</h1>
+                      </div>
+                      <div className="uk-width-1-3 uk-text-right">
+                        <Link to="/new-route" className="add-button">
+                          <img src={Add} />
+                        </Link>
+                      </div>
+                    </div>
+                    
+
+                    <div className="uk-grid uk-grid-small" data-uk-grid="masonry: true">
+                      {this.state.routes ?
+                      this.state.routes.map((route, index) => (
+                        <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} comments={route.Comments} routeid={route.ID} imageUrl={route.ImageUrl} jwt={this.state.jwt} userID={this.props.id} users={this.state.users}/>
+                      )) 
+                      : <BarLoader color="#B60B31" />
+                      }
+                    </div>
                   </div>
-                  <div className="uk-width-1-1 uk-width-1-2@s uk-text-center uk-text-right@s">
-                    <Link to="/new-route" className="button brandone-outline">Add Route</Link>
+                  <div className="uk-width-1-1 uk-width-1-2@s right uk-text-center uk-text-right@s">
+                  <div className="uk-grid uk-grid-collapse">
+                      <div className="uk-width-2-3 uk-text-left">
+                        <h1 className="bold white">My Feed</h1>
+                      </div>
+                    </div>
+                    
+
+                    <div className="uk-grid uk-grid-small" data-uk-grid="masonry: true">
+                      {this.state.routes ?
+                      this.state.routes.map((route, index) => (
+                        <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} comments={route.Comments} routeid={route.ID} imageUrl={route.ImageUrl} jwt={this.state.jwt} userID={this.props.id} users={this.state.users}/>
+                      )) 
+                      : <BarLoader color="#B60B31" />
+                      }
+                    </div>
                   </div>
-                </div>
-                <div className="uk-grid uk-grid-small" data-uk-grid="masonry: true">
-                  {this.state.routes ?
-                  this.state.routes.map((route, index) => (
-                    <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} comments={route.Comments} routeid={route.ID} imageUrl={route.ImageUrl} jwt={this.state.jwt} userID={this.props.id} users={this.state.users}/>
-                  )) 
-                  : <BarLoader color="#B60B31" />
-                  }
                 </div>
               </div>
             </div>
