@@ -20,10 +20,19 @@ class Header extends Component  {
             <div className="uk-navbar-right">
               <ul>
                 <li>
-                  <Link to="/new-route" className="white bold">Add Routes</Link>
+                  <Link to="/eventually/dir" className="white bold">| Directory |</Link>
                 </li>
                 <li>
-                  <Link to="/profile" className="white bold">Profile</Link>
+                  <Link to="/eventually/fc" className="white bold">| Followed Climbers |</Link>
+                </li>
+                <li>
+                  <Link to="/new-route" className="white bold">| Add Route |</Link>
+                </li>
+                <li>
+                  <Link to="/eventually/hoc" className="white bold">| Hall of Crush |</Link>
+                </li>
+                <li>
+                  <Link to="/profile" className="white bold">| My Profile |</Link>
                 </li>
                 <li>
                   <a className="button white-outline" onClick={this.props.handleLogout}>Logout</a>

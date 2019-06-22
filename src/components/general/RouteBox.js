@@ -10,7 +10,9 @@ class RouteBox extends Component {
 
     this.state = {
       routeurl: '/route/'.concat(this.props.routeid),
-      sendDate: new Date(this.props.sendDate)
+      sendDate: new Date(this.props.sendDate),
+      jwt: this.props.jwt,
+      users: this.props.users
     }
   }
 
@@ -18,7 +20,7 @@ class RouteBox extends Component {
     let comment;
     if(this.props.comments) {
       if(this.props.comments.length) {
-        comment = <CommentAccordion comments={this.props.comments}/>;
+        comment = <CommentAccordion comments={this.props.comments} jwt={this.state.jwt} users={this.state.users}/>;
       } else {
         comment = <div></div>;
       }
@@ -26,11 +28,16 @@ class RouteBox extends Component {
       comment = <div></div>;
     }
 
+    let imageUrl = "https://placekitten.com/400/300";
+    if (this.props.imageUrl != '') {
+      imageUrl = this.props.imageUrl;
+    }
+
     return (
       <div className="single-box uk-width-1-1 uk-width-1-3@s">
         <Link to={this.state.routeurl}>
           <div className="container">
-            <img src="https://placekitten.com/400/300" alt="placeholder route" />
+            <img src={imageUrl} alt="placeholder route" />
             <div className="text">
               <h2 className="bold">{this.props.name}</h2>
               <h4>V{this.props.grade}</h4>
