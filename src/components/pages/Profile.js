@@ -171,6 +171,9 @@ class Profile extends Component {
 
 
   render() {
+    // console.log("USERMAP: ", this.state.users)
+    // console.log("ROUTES: ", this.state.routes)
+
     if (this.state.loading == true) {
       return null;
     }
@@ -202,10 +205,6 @@ class Profile extends Component {
             <div className="uk-width-1-1 uk-width-5-6@m routes bgone">
               <div className="uk-section">
                 <div className="uk-grid">
-
-
-
-
                   <div className="uk-width-1-1 uk-width-1-2@s left uk-text-center uk-text-left@s">
                     <div className="uk-grid uk-grid-collapse">
                       <div className="uk-width-2-3 uk-text-left">
@@ -217,12 +216,11 @@ class Profile extends Component {
                         </Link>
                       </div>
                     </div>
-                    
 
                     <div className="uk-grid uk-grid-small" data-uk-grid="masonry: true">
                       {this.state.routes ?
                       this.state.routes.map((route, index) => (
-                        <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} comments={route.Comments} routeid={route.ID} imageUrl={route.ImageUrl} jwt={this.state.jwt} userID={this.props.id} users={this.state.users}/>
+                        <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} comments={route.Comments} routeid={route.ID} imageUrl={route.ImageUrl} jwt={this.state.jwt} userID={this.props.id} users={this.state.users} />
                       )) 
                       : <BarLoader color="#B60B31" />
                       }
@@ -235,11 +233,10 @@ class Profile extends Component {
                       </div>
                     </div>
                     
-
                     <div className="uk-grid uk-grid-small" data-uk-grid="masonry: true">
                       {this.state.routes ?
                       this.state.routes.map((route, index) => (
-                        <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} comments={route.Comments} routeid={route.ID} imageUrl={route.ImageUrl} jwt={this.state.jwt} userID={this.props.id} users={this.state.users}/>
+                        <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} comments={route.Comments} routeid={route.ID} routeuserid={route.user_id} imageUrl={route.ImageUrl} jwt={this.state.jwt} userID={this.props.id} users={this.state.users}/>
                       )) 
                       : <BarLoader color="#B60B31" />
                       }

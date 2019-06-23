@@ -26,29 +26,63 @@
 }
 
 .login-form {
-  border-top: 6px solid $brandone;
+  border-top: 6px solid $brandthree;
+  border-radius: 8px;
+  background: $brandone;
   position: fixed;
   top: 50%;
+  width: 30%;
   padding: 30px 40px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.55);
+  box-shadow: 0 0 14px rgba(0,0,0,0.85);
   left: 50%;
   transform: translate(-50%, -50%);
 
   h2 {
-    margin-bottom: 30px;
+    margin-bottom: 0;
+    color: white;
+  }
+
+  p {
+    color: white;
+    margin-top: 2px;
+    margin-bottom: 20px;
   }
 
   form {
-    input[type=text],
-    input[type=email],
-    input[type=password] {
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
       display: block;
+      width: 90%;
       margin: 10px auto;
       box-shadow: none;
-      padding: 10px 20px;
-      border: 3px solid $brandone;
+      background: $brandone !important;
+      padding: 15px 20px;
+      border: 2px solid white;
       background: white;
       border-radius: 5px;
+      color: #f4f4f4;
+      font-weight: bold;
+      letter-spacing: 0.25px;
+      font-size: 18px;
+
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover, 
+      &:-webkit-autofill:focus, 
+      &:-webkit-autofill:active  {
+          -webkit-box-shadow: 0 0 0 30px $brandone inset !important;
+          -webkit-text-fill-color: #f4f4f4;
+          font-weight: bold;
+          letter-spacing: 0.25px;
+          font-size: 18px;
+
+      }
+
+      &::placeholder {
+        color: #f4f4f4;
+        letter-spacing: 0.25px;
+        font-size: 18px;
+      }
 
       &:invalid,
       &:valid {
@@ -56,19 +90,23 @@
       }
     }
 
-    input[type=submit] {
+    input[type="submit"] {
       display: block;
       padding: 10px 20px;
-      border: 3px solid $brandone;
       border-radius: 5px;
-      background: white;
+      background: $brandthree;
+      color: white;
       font-weight: bolder;
-      letter-spacing: 0.5px;
+      font-size: 18px;
+      letter-spacing: 0.75px;
       transition: .25s all ease-in-out;
-      margin-top: 25px;
+      margin-top: 15px;
+      box-shadow: 0 0 4px rgba(0,0,0,0.25);
+      transition: 0.45s all ease-in-out;
 
       &:hover {
-        background: $brandone;
+        transform: scale(1.005);
+        box-shadow: none;
         color: white;
         cursor: pointer;
       }

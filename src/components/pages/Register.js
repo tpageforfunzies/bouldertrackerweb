@@ -70,6 +70,7 @@ class Register extends Component {
   
           <div className="login-form">
             <h2 className="bold">Register</h2>
+            <p>Create an account to post routes, follow your favorite climbers, find new climbers to follow and interact with your friends sends!</p>
             <form onSubmit={this.handleSubmit}>
               <input 
                 type="text" 
@@ -94,7 +95,7 @@ class Register extends Component {
               />
               <input 
                 type="submit" 
-                value="Submit" 
+                value="Register" 
               />
             </form>
           </div>

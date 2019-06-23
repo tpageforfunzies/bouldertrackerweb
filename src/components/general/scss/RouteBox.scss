@@ -8,7 +8,7 @@
       border-radius: 10px;
       box-shadow: 0 0 14px rgba(0, 0, 0, 0.45);
       padding: 10px 20px;
-      transition: 0.35s all ease-in-out;
+      transition: 0.55s all ease-in-out;
       position: relative;
       .uk-grid {
 
@@ -32,13 +32,19 @@
             margin-bottom: 5px;
             font-size: 36px;
           }
-    
-          span.sent {
-            display: block;
-            color: white;
-            margin-top: 8px;
-            margin-bottom: 0;
+          .sent-wrapper {
+            span.sent {
+              display: inline-block;
+              color: white;
+              margin-top: 0;
+              margin-bottom: 0;
+            }
+
+            span.userspan {
+              color: white;
+            }
           }
+          
         }
     
         .right-container {
@@ -53,7 +59,7 @@
           }
     
           .comments {
-            margin-top: -15px;
+            margin-top: -25px;
             display: block;
             text-align: right;
             color: white;
@@ -76,7 +82,7 @@
       text-decoration: none;
 
       .container {
-        transform: scale(1.01);
+        transform: scale(1.015);
 
         .uk-grid {
           .left-container {

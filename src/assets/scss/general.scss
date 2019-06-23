@@ -49,6 +49,10 @@ $brandthree: #3C62D4;
     margin-top: 15px;
     width: 30px;
     height: 30px;
+    
+    &:hover {
+      animation: scale 3s infinite;
+    }
   }
 }
 
@@ -112,4 +116,16 @@ $brandthree: #3C62D4;
   margin: 0 auto;
   display: block;
   padding: 0 30px;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

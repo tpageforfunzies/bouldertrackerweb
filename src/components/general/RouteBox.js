@@ -34,7 +34,15 @@ class RouteBox extends Component {
     if (this.props.imageUrl != '') {
       imageUrl = this.props.imageUrl;
     }
-
+    let userspan = (
+      <span className="userspan">Sent by {this.props.users[this.props.routeuserid]} on </span>
+    );
+    // if(this.props.userID != this.props.routeuserid) {
+    //   userspan = (
+    //     <span className="userspan">{this.props.users[this.props.routeuserid]}</span>
+    //   );
+    // } 
+    console.log(this.props);
     return (
 
       <div className="single-box uk-width-1-1">
@@ -46,9 +54,11 @@ class RouteBox extends Component {
               </div>
               <div className="left-container uk-text-left uk-width-3-5">
                 <h2 className="bold">{this.props.name}</h2>
-                <span className="sent">
-                  {this.state.sendDate.toDateString()}
-                </span>
+                <div className="sent-wrapper">
+                  {this.props.routeuserid ? userspan : ''}
+                  <span className="sent">{this.state.sendDate.toDateString()}</span>
+                  
+                </div>
               </div>
               <div className="right-container uk-width-1-5">
                 <span className="grade">

@@ -1,29 +1,68 @@
 @import '../../../assets/scss/general';
 
 .single-route-page {
+  background: $brandone;
+  min-height: 90vh;
   .uk-section {
     .gridl {
       .single-route {
-        border-top: 6px solid $brandone;
-        background: white;
+        border-top: 6px solid $brandthree;
+        background: $brandtwo;
+        border-radius: 8px;
         position: fixed;
         top: 50%;
         padding: 30px 40px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.55);
+        box-shadow: 0 0 14px rgba(0,0,0,0.55);
         left: 50%;
         transform: translate(-50%, -50%);
 
         .uk-grid {
+          .image {
+            img {
+              box-shadow: 0 0 4px rgba(0, 0, 0, 0.45);
+              border: 2px solid white;
+              border-radius: 5px;
+            }
+
+            .image-upload {
+              margin-top: 20px;
+            }
+          }
+
           .uk-width-1-1 {
             padding: 10px;
             
             &.data {
               h2 {
                 margin-bottom: 5px;
+                color: #fff;
+                font-size: 40px;
               }
 
               h4 {
-                margin-top: 5px;
+                margin-top: 2px;
+                margin-bottom: 0px;
+                color: white;
+
+                &.grade {
+                  font-weight: bold;
+                  letter-spacing: 0.25px;
+                  font-size: 24px;
+
+                  span {
+                    font-weight: 500 !important;
+                  }
+                }
+              }
+
+              p {
+                margin: 2px 0 !important; 
+              }
+
+              div {
+                p {
+                  color: white;
+                }
               }
             }
           }
@@ -43,21 +82,42 @@
     margin-top: 20px;
   
     input[type="text"] {
-      background: white;
-      border: 3px solid $brandone;
+      background: $brandtwo;
+      border: 3px solid $brandthree;
       padding: 10px 20px;
       display: inline-block;
-      width: 55%;
+      color: #f4f4f4;
+      letter-spacing: 0.25px;
+      font-size: 18px;
+
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover, 
+      &:-webkit-autofill:focus, 
+      &:-webkit-autofill:active  {
+          -webkit-box-shadow: 0 0 0 30px $brandone inset !important;
+          -webkit-text-fill-color: #f4f4f4;
+          font-weight: bold;
+          letter-spacing: 0.25px;
+          font-size: 18px;
+
+      }
+
+      &::placeholder {
+        color: #f4f4f4;
+        letter-spacing: 0.25px;
+        font-size: 18px;
+      }
     }
   
     input[type="submit"] {
       display: inline-block;
-      background: $brandone;
-      border: 3px solid $brandone;
+      background: $brandthree;
+      border: 3px solid $brandthree;
       padding: 10px;
       color: white;
-      margin-left: 10px;
+      font-size: 18px;
       font-weight: bold;
+      width: 100%;
     }
   }
 }

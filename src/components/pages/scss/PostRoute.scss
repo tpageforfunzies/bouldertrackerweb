@@ -1,27 +1,55 @@
 @import '../../../assets/scss/general';
-
+.add-route-page {
+  background: $brandone;
+  width: 100%;
+  min-height: 95vh;
+  padding: 40px 0;
+}
 .add-form {
-  border-top: 6px solid $brandone;
-  position: fixed;
-  top: 50%;
+  border-top: 6px solid $brandthree;
+  border-radius: 8px;
+  background: $brandtwo;
+  max-width: 800px;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 30px;
+  display: block;
   min-width: 40%;
   padding: 30px 40px;
   box-shadow: 0 0 10px rgba(0,0,0,0.55);
-  left: 50%;
-  transform: translate(-50%, -50%);
+
+  h2,
+  h3 {
+    color: white;
+  }
+
+  h3 {
+    margin: 15px 0;
+  }
+  
 
   form {
-    input[type=text] {
+    input[type="text"] {
       display: block;
       margin: 10px auto;
       box-shadow: none;
       width: 90%;
       padding: 10px 5%;
-      border: 3px solid $brandone;
+      border: 3px solid $brandthree;
       border-radius: 5px;
+      background: $brandtwo;
+      font-size: 18px;
+      letter-spacing: 0.25px;
+      color: white;
+
+      &::placeholder {
+        color: #fff;
+        letter-spacing: 0.25px;
+        font-size: 18px;
+      }
     }
   
-    input[type=submit] {
+    input[type="submit"] {
       display: block;
       padding: 10px 20px;
       border: 3px solid $brandone;
@@ -39,12 +67,14 @@
       }
     }
     h3 {
-      margin-bottom: 3px;
+      margin-bottom: 5px;
       margin-top: 10px;
     }
     p {
       margin-top: 5px;
       margin-bottom: 10px;
+      color: white;
+      font-weight: 500;
     }
 
     .moves-selector {

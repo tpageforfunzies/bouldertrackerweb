@@ -179,53 +179,55 @@ class PostRoute extends Component {
         this.props.history.push('/profile');
       }
       return (
-        <div className="add-form">
-          <h2 className="bold">Add Route</h2>
-          <form onSubmit={this.handleSubmit}>
-            <input 
-              type="text" 
-              name="name" 
-              placeholder="Route Name"
-              onChange={this.handleNameChange.bind(this)}
-              value={this.state.email} 
-            />
-            <input 
-              type="text" 
-              name="grade" 
-              placeholder="Route Grade"
-              onChange={this.handleGradeChange.bind(this)}
-              value={this.state.password} 
-            />
-            <h3 className="bold black">Type of Climb:</h3>
-            <Select 
-              options={this.state.typeOptions} 
-              className="moves-selector"
-              defaultValue={this.state.typeOptions[0]}
-              onChange={this.handleTypeChange.bind(this)}
-            />
-            <h3 className="bold black">Your rating:</h3>
-            <StarRatings
-              rating={this.state.star_rating}
-              starRatedColor="#B60B31"
-              changeRating={this.handleRatingChange.bind(this)}
-              numberOfStars={5}
-              name='rating'
-            />
-            <h3 className="bold black">Beta(optional):</h3>
-            <p className="bold black">Select number of moves</p>
-            <Select 
-              options={this.state.numMovesOptions} 
-              className="moves-selector"
-              defaultValue={this.state.numMovesOptions[0]}
-              onChange={this.handleNumMovesChange.bind(this)}
-            />
-            {betaForm}
-            <input 
-              type="submit" 
-              value="Submit" 
-            />
+        <div className="add-route-page">
+          <div className="add-form">
+            <h2 className="bold">Add a route</h2>
+            <form onSubmit={this.handleSubmit}>
+              <input 
+                type="text" 
+                name="name" 
+                placeholder="Route Name"
+                onChange={this.handleNameChange.bind(this)}
+                value={this.state.email} 
+              />
+              <input 
+                type="text" 
+                name="grade" 
+                placeholder="Route Grade"
+                onChange={this.handleGradeChange.bind(this)}
+                value={this.state.password} 
+              />
+              <h3 className="bold">Type of Climb:</h3>
+              <Select 
+                options={this.state.typeOptions} 
+                className="moves-selector"
+                defaultValue={this.state.typeOptions[0]}
+                onChange={this.handleTypeChange.bind(this)}
+              />
+              <h3 className="bold">Your rating:</h3>
+              <StarRatings
+                rating={this.state.star_rating}
+                starRatedColor="#3C62D4"
+                changeRating={this.handleRatingChange.bind(this)}
+                numberOfStars={5}
+                name='rating'
+              />
+              <h3 className="bold">Beta(optional):</h3>
+              <p className="">Select number of moves</p>
+              <Select 
+                options={this.state.numMovesOptions} 
+                className="moves-selector"
+                defaultValue={this.state.numMovesOptions[0]}
+                onChange={this.handleNumMovesChange.bind(this)}
+              />
+              {betaForm}
+              <input 
+                type="submit" 
+                value="Submit" 
+              />
 
-          </form>
+            </form>
+          </div>
         </div>
       );
     } else {

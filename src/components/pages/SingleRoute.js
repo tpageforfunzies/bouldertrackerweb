@@ -167,17 +167,25 @@ class SingleRoute extends Component {
     let commentform = (
       <div className="comment-form-container">
         <form onSubmit={this.handleSubmit} className="comment-form">
-          <input 
-              type="text" 
-              name="comment" 
-              placeholder="Comment"
-              onChange={this.handleCommentChange.bind(this)}
-              value={this.state.comment} 
-            />
-          <input 
-            type="submit" 
-            value="Submit" 
-          />
+          <div className="uk-grid uk-grid-collapse">
+            <div className="uk-width-2-3">
+              <input 
+                type="text" 
+                name="comment" 
+                placeholder="Leave a comment"
+                onChange={this.handleCommentChange.bind(this)}
+                value={this.state.comment} 
+              />
+            </div>
+            <div className="uk-width-1-3">
+              <input 
+                type="submit" 
+                value="Post" 
+              />
+            </div>
+          </div>
+          
+          
         </form>
       </div>
     )
@@ -205,13 +213,13 @@ class SingleRoute extends Component {
                 <div className="uk-grid uk-grid-collapse">
                   <div className="uk-width-1-1 uk-width-1-2@m image">
                     <img src={imageLink} alt="single route placeholder" />
-                    <ImageButton updatePic={this.updateRoutePic} />
+                    <ImageButton updatePic={this.updateRoutePic} title="Change Picture" />
                   </div>
                   <div className="uk-width-1-1 uk-width-1-2@m data">
                     <h2 className="bold black">{this.state.route.name}</h2>
-                    <h4 className="black">V{this.state.route.grade}</h4>
+                    <h4 className="black grade">V{this.state.route.grade}</h4>
                     {this.state.route.star_rating ? (
-                      <StarRatings rating={this.state.route.star_rating} starRatedColor="#B60B31" />
+                      <StarRatings rating={this.state.route.star_rating} starRatedColor="#3C62D4" />
                     ) : (
                       <h4 className="bold color-one">Problem not rated</h4>
                     )

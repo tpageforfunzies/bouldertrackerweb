@@ -66,6 +66,7 @@ class Login extends Component {
       <div className="login-page-container overlay">
         <div className="login-form">
           <h2 className="bold">Login</h2>
+          <p>Log in to your account and start sharing your sends!</p>
           <form onSubmit={this.handleSubmit}>
             <input 
               type="text" 
