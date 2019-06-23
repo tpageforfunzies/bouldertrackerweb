@@ -228,19 +228,19 @@ class Profile extends Component {
                   </div>
                   <div className="uk-width-1-1 uk-width-1-2@s right uk-text-center uk-text-right@s">
                   <div className="uk-grid uk-grid-collapse">
-                      <div className="uk-width-2-3 uk-text-left">
-                        <h1 className="bold white">My Feed</h1>
+                      <div className="uk-width-1-1 uk-text-left">
+                        <h1 className="bold white">My Feed...coming soon</h1>
                       </div>
                     </div>
                     
-                    <div className="uk-grid uk-grid-small" data-uk-grid="masonry: true">
+                    {/* <div className="uk-grid uk-grid-small" data-uk-grid="masonry: true">
                       {this.state.routes ?
                       this.state.routes.map((route, index) => (
                         <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} comments={route.Comments} routeid={route.ID} routeuserid={route.user_id} imageUrl={route.ImageUrl} jwt={this.state.jwt} userID={this.props.id} users={this.state.users}/>
                       )) 
                       : <BarLoader color="#B60B31" />
                       }
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

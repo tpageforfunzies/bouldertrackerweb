@@ -168,7 +168,7 @@ class SingleRoute extends Component {
       <div className="comment-form-container">
         <form onSubmit={this.handleSubmit} className="comment-form">
           <div className="uk-grid uk-grid-collapse">
-            <div className="uk-width-2-3">
+            <div className="uk-width-3-4">
               <input 
                 type="text" 
                 name="comment" 
@@ -177,7 +177,7 @@ class SingleRoute extends Component {
                 value={this.state.comment} 
               />
             </div>
-            <div className="uk-width-1-3">
+            <div className="uk-width-1-4">
               <input 
                 type="submit" 
                 value="Post" 

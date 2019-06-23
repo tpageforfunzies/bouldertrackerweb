@@ -5,9 +5,8 @@
   min-height: 90vh;
 
   .routes {
-    padding: 0 30px;
     border-left: 6px solid $brandthree;
-    
+
     .uk-section {
       padding-top: 0;
 
@@ -17,6 +16,8 @@
       }
 
       .uk-grid {
+        margin-left: 0;
+
         .left {
           border-right: 6px solid $brandtwo;
           padding: 40px;

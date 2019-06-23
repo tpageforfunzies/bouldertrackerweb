@@ -2,19 +2,21 @@
 
 .single-route-page {
   background: $brandone;
-  min-height: 90vh;
+  min-height: 60vh;
+  overflow: scroll;
+
+  &::-webkit-scrollbar { width: 0 !important }
+  
   .uk-section {
     .gridl {
       .single-route {
         border-top: 6px solid $brandthree;
         background: $brandtwo;
         border-radius: 8px;
-        position: fixed;
-        top: 50%;
         padding: 30px 40px;
         box-shadow: 0 0 14px rgba(0,0,0,0.55);
-        left: 50%;
-        transform: translate(-50%, -50%);
+        margin: 0 auto;
+        margin-top: 50px;
 
         .uk-grid {
           .image {
