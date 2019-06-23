@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import './scss/CommentAccordion.scss';
 
@@ -7,17 +8,20 @@ class CommentAccordion extends Component {
         super(props);
 
         this.state = {
-            comments: this.props.comments
+            comments: this.props.comments,
+            jwt: this.props.jwt,
+            users: this.props.users
         }
 
-        console.log('[CommentAccordian] constructor', this.props.comments);
+        console.log('[CommentAccordian] constructor state', this.state);
 
     }
 
-    fetchUsernameFromComment = (id) => {
-        let url = 'https://www.hackcity.dev/v1/user/' + this.props.id.toString();
-        let authHeader = { "Authorization": "Bearer ".concat(this.props.jwt) }
+    getUserNameFromId(id) {
+        console.log(this.state.users[id]);
+        return this.state.users[id];
     }
+
     render() {
         return (
             <div className="accordion-container">
@@ -26,9 +30,9 @@ class CommentAccordion extends Component {
                 <ul data-uk-accordion="collapsible: true">
                     {this.state.comments.map((comment, i) => (
                         <li key={i}>
-                            <a className="uk-accordion-title" href="#"><span className="bold">From User ID:</span> {(() => this.fetchUsernameFromComment(comment.user_id))}</a>
+                            <a className="uk-accordion-title" href="#"><span className="bold">From</span> {this.getUserNameFromId(comment.user_id)} </a>
                             <div className="uk-accordion-content">
-                                <p><span className="bold">Message: </span> {comment.content}</p>
+                                <p><span className="bold"></span>{comment.content}</p>
                             </div>
                         </li>
                     ))}

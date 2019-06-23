@@ -14,31 +14,43 @@ class Profile extends Component {
     this.state = {
       routes: [],
       user: {},
+      users: {},
       email: '',
       name: '',
       id: this.props.id,
+      jwt: this.props.jwt,
       imageLink: '',
       loading: true
     }
   }
 
   componentDidMount() {
+    this.fetchUsers();
     this.fetchRoutes();
     this.fetchUser();
   }
 
   handleRoutes = routes => {
     this.setState({
-       routes: routes.reverse(),
-       loading: false 
+       routes: routes.reverse()
     });
   }
 
   handleUser = user => {
     this.setState({
       user: user,
-      loading: false,
       imageLink: user.ImageUrl === '' ? '' : user.ImageUrl
+    })
+  }
+
+  handleUsers = users => {
+    let userMap = {}
+    users.map((user, i, a) => {
+      userMap[user.ID] = user.name;
+    })
+    this.setState({
+      users: userMap,
+      loading: false
     })
   }
 
@@ -72,7 +84,25 @@ class Profile extends Component {
       })
       .then((res) => {
         this.handleUser(res.data.user);
-        console.log('post-axios user gather:', this.state.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    } catch (e) {
+      alert(e);
+    }
+  }
+
+  fetchUsers = () => {
+    let url = 'https://www.hackcity.dev/v1/users';
+    let authHeader = { "Authorization": "Bearer ".concat(this.props.jwt) }
+
+    try {
+      axios.get(url, {
+        headers: authHeader
+      })
+      .then((res) => {
+        this.handleUsers(res.data.users);
       })
       .catch((err) => {
         console.log(err);
@@ -139,6 +169,9 @@ class Profile extends Component {
 
 
   render() {
+    if (this.state.loading == true) {
+      return null;
+    }
     let imageLink = this.state.imageLink
     if(imageLink === "") {
       imageLink = "https://placekitten.com/250/250";
@@ -153,9 +186,9 @@ class Profile extends Component {
                 <h1 className="bold white">Profile</h1>
                 <img className="avatar" src={imageLink} alt="placeholder avatar" />
                 // STYLE MEEEEE
-                <ImageButton updateProfilePicProp={this.updateProfilePic} />
-                <h2 className="bold white">Jeff Hooton</h2>
-                <p className="white"><span className="bold">Email:</span> jeffreyd@hooton.com</p>
+                <ImageButton updatePic={this.updateProfilePic} />
+                <h2 className="bold white">{this.state.user.name}</h2>
+                <p className="white"><span className="bold">Email:</span> {this.state.user.email}</p>
                 <div className="whiteline"></div>
                 <h3 className="bold white">Statistics</h3>
                 <p className="white"><span className="bold">Sends:</span> {this.state.routes.length}</p>
@@ -177,7 +210,7 @@ class Profile extends Component {
                 <div className="uk-grid uk-grid-small" data-uk-grid="masonry: true">
                   {this.state.routes ?
                   this.state.routes.map((route, index) => (
-                    <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} comments={route.Comments} routeid={route.ID} jwt={this.props.jwt} userID={this.props.id} />
+                    <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} comments={route.Comments} routeid={route.ID} imageUrl={route.ImageUrl} jwt={this.state.jwt} userID={this.props.id} users={this.state.users}/>
                   )) 
                   : <BarLoader color="#B60B31" />
                   }

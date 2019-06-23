@@ -3,6 +3,7 @@ import { BrowserRouter as withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 import CommentAccordion from '../general/CommentAccordion';
+import ImageButton from '../general/ImageButton'
 
 import './scss/SingleRoute.scss';
 import { BarLoader } from 'react-spinners';
@@ -14,24 +15,33 @@ class SingleRoute extends Component {
 
     this.state = {
       route: {},
-      id: this.props.id,
+      id: this.props.match.params.id,
       jwt: this.props.jwt,
       authed: this.props.isAuthed,
-      comment: ''
+      comment: '',
+      users: {},
+      loading: true,
+      imageLink: ''
     }
+  }
 
+  componentDidMount() {
     this.fetchRoute();
-    console.log('[SingleRoute] props >', this.props);
+    this.fetchUsers();
+    // this.setState({
+    //   loading: false
+    // })
   }
 
   handleRoute = (route) => {
     this.setState({
-      route: route
+      route: route,
+      imageLink: route.ImageUrl
     });
   }
 
   fetchRoute = async () => {
-    let url = 'https://www.hackcity.dev/v1/route/'.concat(this.props.match.params.id);
+    let url = 'https://www.hackcity.dev/v1/route/'.concat(this.state.id);
 
     console.log(url)
     let authHeader = { "Authorization": "Bearer ".concat(this.state.jwt) };
@@ -52,30 +62,61 @@ class SingleRoute extends Component {
 
   }
 
-  handleCommentChange = (e) => {
+  handleUsers = users => {
+    let userMap = {}
+    users.map((user, i, a) => {
+      userMap[user.ID] = user.name;
+    })
+    this.setState({
+      users: userMap,
+      loading: false
+    })
+  }
+
+  fetchUsers = () => {
+    let url = 'https://www.hackcity.dev/v1/users';
+    let authHeader = { "Authorization": "Bearer ".concat(this.state.jwt) }
+
+    try {
+      axios.get(url, {
+        headers: authHeader
+      })
+      .then((res) => {
+        this.handleUsers(res.data.users);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    } catch (e) {
+      alert(e);
+    }
+  }
+
+  handleCommentChange = e => {
     this.setState({
       comment: e.target.value
     });
   }
 
-  handleCommentSubmit = () => {
-    let url = 'https://www.hackcity.dev/v1/comment/new';
-    let authHeader = { "Authorization": "Bearer ".concat(this.props.jwt) };
+  handleSubmit = (e) => {
+    e.preventDefault();
+    let authHeader = { "Authorization": "Bearer ".concat(this.state.jwt) };
+    console.log(authHeader);
 
     try {
       axios({
         method: 'post',
-        url: url,
+        url: "https://www.hackcity.dev/v1/comment/new",
         headers: authHeader,
         data: {
-          user_id: this.state.id,
+          user_id: parseInt(this.props.userid),
           route_id: this.state.route.ID,
-          comment: this.state.comment
+          content: this.state.comment
         }
       })
       .then((res) => {
         console.log('[SingleRoute] Comment submit success', res.data);
-        this.handleRoute(res.data.route);
+        this.fetchRoute();
       })
       .catch((err) => {
         console.log(err);
@@ -86,18 +127,53 @@ class SingleRoute extends Component {
     }
   }
 
+  // event handler for input, passed as a prop to the imagebutton component
+  updateRoutePic = e => {
+    // only grabs first file for now, set up to do multiple
+    const file = e.target.files[0];
+    if (file === undefined) {
+      return
+    }
+    let formData = new FormData();
+    formData.append("picture", file);
+
+    let url = "https://www.hackcity.dev/v1/routepic/" + this.state.id;
+    axios.post(url, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Authorization": "Bearer ".concat(this.props.jwt)
+        }
+      })
+    .then((res) => {
+      this.setState({ imageLink: res.data })
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
   render() {
+    if (this.state.loading == true) {
+      return null;
+    }
+
+    let imageLink = this.state.imageLink
+    if(imageLink === "") {
+      imageLink = "https://placekitten.com/500/600";
+    }
+
     let comments;
     let commentform = (
       <div className="comment-form-container">
-        <form onSubmit={this.handleCommentSubmit} className="comment-form">
+        <form onSubmit={this.handleSubmit} className="comment-form">
           <input 
-            type="text" 
-            name="comment" 
-            placeholder="Leave a comment!"
-            onChange={this.handleCommentChange.bind(this)}
-            value={this.state.comment} 
-          />
+              type="text" 
+              name="comment" 
+              placeholder="Comment"
+              onChange={this.handleCommentChange.bind(this)}
+              value={this.state.comment} 
+            />
           <input 
             type="submit" 
             value="Submit" 
@@ -109,7 +185,7 @@ class SingleRoute extends Component {
     if(this.state.route.Comments) {
       if(this.state.route.Comments.length > 0) {
         comments = (
-          <CommentAccordion comments={this.state.route.Comments}/>
+          <CommentAccordion comments={this.state.route.Comments} jwt={this.state.jwt} users={this.state.users}/>
         );
       } else {
         comments = <div>
@@ -119,9 +195,6 @@ class SingleRoute extends Component {
     } else {
       comments = <div><p>No comments yet</p></div>;
     }
-    
-    console.log('[SingleRoute] this.state.route', this.state.route);
-
 
     return (
       <div className="single-route-page">
@@ -131,7 +204,8 @@ class SingleRoute extends Component {
               <div className="single-route">
                 <div className="uk-grid uk-grid-collapse">
                   <div className="uk-width-1-1 uk-width-1-2@m image">
-                    <img src="https://placekitten.com/500/600" alt="single route placeholder" />
+                    <img src={imageLink} alt="single route placeholder" />
+                    <ImageButton updatePic={this.updateRoutePic} />
                   </div>
                   <div className="uk-width-1-1 uk-width-1-2@m data">
                     <h2 className="bold black">{this.state.route.name}</h2>
