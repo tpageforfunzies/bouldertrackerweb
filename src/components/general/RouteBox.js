@@ -49,10 +49,10 @@ class RouteBox extends Component {
         <Link to={this.state.routeurl}>
           <div className="container bgtwo">
             <div className ="uk-grid uk-grid-collapse">
-              <div className="uk-width-1-5 image">
+              <div className="uk-width-1-1 uk-width-1-5@s image">
                 <img src={imageUrl} />
               </div>
-              <div className="left-container uk-text-left uk-width-3-5">
+              <div className="left-container uk-text-left uk-width-3-5@s uk-width-1-1">
                 <h2 className="bold">{this.props.name}</h2>
                 <div className="sent-wrapper">
                   {this.props.routeuserid ? userspan : ''}
@@ -60,7 +60,7 @@ class RouteBox extends Component {
                   
                 </div>
               </div>
-              <div className="right-container uk-width-1-5">
+              <div className="right-container uk-width-1-5@s uk-width-1-1">
                 <span className="grade">
                   V{this.props.grade}
                 </span>

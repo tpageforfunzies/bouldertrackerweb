@@ -48,8 +48,6 @@ class Home extends Component {
             </div>
       );
     }
-
-    console.log('[home]isAuthed', this.props.isAuthed);
     
     if(this.props.isAuthed) {
       
@@ -72,6 +70,29 @@ class Home extends Component {
                   <h1 className="bold white">BoulderTracker</h1>
                   <h3 className="white">The #1 place to track and share your bouldering sends. Keep track of your progress and climbing statistics, and comment on others' progress.</h3>
                   {buttons}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="post-hero bgone">
+          <div className="gridm">
+            <h1 className="white bold">Why BoulderTracker?</h1>
+            
+            <div className="uk-grid-collapse uk-grid uk-grid-match">
+              <div className="uk-width-1-1 uk-width-1-2@s uk-width-1-3@m">
+                <div className="container">
+                  <h4 className="white">Track your growth/progression as a climber</h4>
+                </div>
+              </div>
+              <div className="uk-width-1-1 uk-width-1-2@s uk-width-1-3@m">
+                <div className="container">
+                  <h4 className="white">Gain insights on your climbing style with in-depth statistics</h4>
+                </div>
+              </div>
+              <div className="uk-width-1-1 uk-width-1-2@s uk-width-1-3@m">
+                <div className="container">
+                  <h4 className="white">Keep tabs on what your favorite climbers(or friends) are climbing</h4>
                 </div>
               </div>
             </div>

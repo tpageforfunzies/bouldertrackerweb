@@ -205,7 +205,7 @@ class Profile extends Component {
             <div className="uk-width-1-1 uk-width-5-6@m routes bgone">
               <div className="uk-section">
                 <div className="uk-grid">
-                  <div className="uk-width-1-1 uk-width-1-2@s left uk-text-center uk-text-left@s">
+                  <div className="uk-width-1-1 uk-width-1-2@m left uk-text-center uk-text-left@s">
                     <div className="uk-grid uk-grid-collapse">
                       <div className="uk-width-2-3 uk-text-left">
                         <h1 className="bold white">My Routes</h1>
@@ -226,7 +226,7 @@ class Profile extends Component {
                       }
                     </div>
                   </div>
-                  <div className="uk-width-1-1 uk-width-1-2@s right uk-text-center uk-text-right@s">
+                  <div className="uk-width-1-1 uk-width-1-2@m right uk-text-center uk-text-right@s">
                   <div className="uk-grid uk-grid-collapse">
                       <div className="uk-width-1-1 uk-text-left">
                         <h1 className="bold white">My Feed...coming soon</h1>

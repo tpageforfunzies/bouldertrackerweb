@@ -35,6 +35,41 @@
       }
     }
   }
+
+  .post-hero {
+    padding: 100px 0;
+
+    .gridm {
+      h1 {
+        &::after {
+          content: '';
+          display: block;
+          margin: 20px 0;
+          max-width: 400px;
+          height: 6px;
+          background: $brandthree;
+        }
+      }
+
+      .uk-grid {
+        .uk-width-1-1 {
+          .container {
+            background: $brandtwo;
+            border-top: 6px solid $brandthree;
+            border-radius: 15px;
+            box-shadow: 0 0 14px rgba(0, 0, 0, 0.55);
+            padding: 40px;
+            max-width: 80%;
+            margin: 20px auto;
+
+            h4 {
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 .hm {
