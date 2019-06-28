@@ -31,7 +31,6 @@ class Profile extends Component {
     this.fetchUsers();
     this.fetchRoutes();
     this.fetchUser();
-    console.log('componentDidMount()')
   }
 
   handleRoutes = routes => {
@@ -40,7 +39,6 @@ class Profile extends Component {
       ...oldstate,
        routes: routes.reverse()
     });
-    console.log('handleRoutes()')
   }
 
   handleUser = user => {
@@ -48,7 +46,6 @@ class Profile extends Component {
       user: user,
       imageLink: user.ImageUrl === '' ? '' : user.ImageUrl
     })
-    console.log('handleUser()')
   }
 
   handleUsers = users => {
@@ -63,7 +60,6 @@ class Profile extends Component {
       users: userMap,
       loading: false
     })
-    console.log('handleUsers()')
   }
 
   fetchRoutes = () => {
@@ -84,7 +80,6 @@ class Profile extends Component {
     } catch (e) {
       alert(e);
     }
-    console.log('fetchRoutes()')
   }
 
   fetchUser = async () => {
@@ -104,7 +99,6 @@ class Profile extends Component {
     } catch (e) {
       alert(e);
     }
-    console.log('fetchUser()')
   }
 
   fetchUsers = () => {
@@ -124,14 +118,12 @@ class Profile extends Component {
     } catch (e) {
       alert(e);
     }
-    console.log('fetchUsers()')
   }
 
   calculateAverage = () => {
     let routeCount = this.state.routes.length;
     let routes = this.state.routes;
     let average = (routes.reduce((sum, route) => sum + parseInt(route.grade), 0) / routeCount).toFixed(2);
-    console.log('calculateAverage()')
     return average;
   }
 
@@ -140,7 +132,6 @@ class Profile extends Component {
     let highest = Math.max.apply(null, routes.map(function(route) {
       return parseInt(route.grade);
     }));
-    console.log('calculateHighest()')
     return highest;
   }
 
@@ -155,7 +146,6 @@ class Profile extends Component {
       counts[month] = (counts[month] || 0) + 1;
       return counts;
     },{});
-    console.log('calculateMostFrequentMonth()')
     return monthNames[Object.keys(monthCounts).find(key => monthCounts[key] === Math.max(...Object.values(monthCounts)))];;
   }
 
@@ -183,7 +173,6 @@ class Profile extends Component {
     .catch((err) => {
       console.log(err);
     })
-    console.log('updateProfilePic()')
   }
 
   shouldComponentUpdate(nextprops, nextstate) {
@@ -191,7 +180,6 @@ class Profile extends Component {
   }
 
   render() {
-    console.log('render()')
 
     if (this.state.loading == true) {
       return null;
@@ -204,6 +192,8 @@ class Profile extends Component {
     }
 
     console.log('imagelink', imageLink);
+
+    console.log('profile.js -> routes', this.state.routes);
 
     if (this.props.id > 0 || store.get('id') > 0) {
       return (
@@ -243,7 +233,7 @@ class Profile extends Component {
                     <div className="uk-grid uk-grid-small" data-uk-grid="masonry: true">
                       {this.state.routes ?
                       this.state.routes.map((route, index) => (
-                        <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} comments={route.Comments} routeid={route.ID} imageUrl={route.ImageUrl} jwt={this.state.jwt} userID={this.props.id} users={this.state.users} />
+                        <RouteBox key={index} name={route.name} grade={route.grade} sendDate={route.CreatedAt} comments={route.Comments} routeid={route.ID} imageUrl={route.image_url} jwt={this.state.jwt} userID={this.props.id} users={this.state.users} />
                       )) 
                       : <BarLoader color="#B60B31" />
                       }
