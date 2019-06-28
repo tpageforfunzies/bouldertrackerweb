@@ -11,6 +11,7 @@ import SingleRoute from './components/pages/SingleRoute';
 import Eventually from './components/pages/Eventually';
 
 import './assets/scss/general.scss';
+import store from './store';
 
 
 class App extends Component {
@@ -50,6 +51,9 @@ class App extends Component {
   handleLogout = () => {
     localStorage.setItem('jwt', null);
     localStorage.setItem('id', null);
+    store.delete('jwt')
+    store.delete('id')
+    
 
     this.setState({
       authed: false,

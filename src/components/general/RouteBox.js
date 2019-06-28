@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import CommentAccordion from './CommentAccordion';
-
-import Comment from '../../assets/images/comment.png';
+import store from '../../store';
 
 import './scss/RouteBox.scss';
 
@@ -42,7 +41,7 @@ class RouteBox extends Component {
     //     <span className="userspan">{this.props.users[this.props.routeuserid]}</span>
     //   );
     // } 
-    console.log(this.props);
+
     return (
 
       <div className="single-box uk-width-1-1">

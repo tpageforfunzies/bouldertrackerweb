@@ -9,6 +9,7 @@ import Add from '../../assets/images/add.png';
 
 import RouteBox from '../general/RouteBox';
 import ImageButton from '../general/ImageButton'
+import store from '../../store';
 
 class Profile extends Component {
   constructor(props) {
@@ -30,12 +31,16 @@ class Profile extends Component {
     this.fetchUsers();
     this.fetchRoutes();
     this.fetchUser();
+    console.log('componentDidMount()')
   }
 
   handleRoutes = routes => {
+    let oldstate = this.state;
     this.setState({
+      ...oldstate,
        routes: routes.reverse()
     });
+    console.log('handleRoutes()')
   }
 
   handleUser = user => {
@@ -43,17 +48,22 @@ class Profile extends Component {
       user: user,
       imageLink: user.ImageUrl === '' ? '' : user.ImageUrl
     })
+    console.log('handleUser()')
   }
 
   handleUsers = users => {
     let userMap = {}
+    let oldstate = this.state;
+
     users.map((user, i, a) => {
       userMap[user.ID] = user.name;
     })
-    this.setState({
+
+    this.setState({...oldstate,
       users: userMap,
       loading: false
     })
+    console.log('handleUsers()')
   }
 
   fetchRoutes = () => {
@@ -74,6 +84,7 @@ class Profile extends Component {
     } catch (e) {
       alert(e);
     }
+    console.log('fetchRoutes()')
   }
 
   fetchUser = async () => {
@@ -93,6 +104,7 @@ class Profile extends Component {
     } catch (e) {
       alert(e);
     }
+    console.log('fetchUser()')
   }
 
   fetchUsers = () => {
@@ -112,12 +124,14 @@ class Profile extends Component {
     } catch (e) {
       alert(e);
     }
+    console.log('fetchUsers()')
   }
 
   calculateAverage = () => {
     let routeCount = this.state.routes.length;
     let routes = this.state.routes;
     let average = (routes.reduce((sum, route) => sum + parseInt(route.grade), 0) / routeCount).toFixed(2);
+    console.log('calculateAverage()')
     return average;
   }
 
@@ -126,6 +140,7 @@ class Profile extends Component {
     let highest = Math.max.apply(null, routes.map(function(route) {
       return parseInt(route.grade);
     }));
+    console.log('calculateHighest()')
     return highest;
   }
 
@@ -140,6 +155,7 @@ class Profile extends Component {
       counts[month] = (counts[month] || 0) + 1;
       return counts;
     },{});
+    console.log('calculateMostFrequentMonth()')
     return monthNames[Object.keys(monthCounts).find(key => monthCounts[key] === Math.max(...Object.values(monthCounts)))];;
   }
 
@@ -167,22 +183,29 @@ class Profile extends Component {
     .catch((err) => {
       console.log(err);
     })
+    console.log('updateProfilePic()')
   }
 
+  shouldComponentUpdate(nextprops, nextstate) {
+    return nextstate.imageLink == '';
+  }
 
   render() {
-    // console.log("USERMAP: ", this.state.users)
-    // console.log("ROUTES: ", this.state.routes)
+    console.log('render()')
 
     if (this.state.loading == true) {
       return null;
     }
-    let imageLink = this.state.imageLink
+
+    let imageLink = this.state.imageLink;
+
     if(imageLink === "") {
       imageLink = "https://placekitten.com/250/250";
     }
 
-    if (this.props.id > 0) {
+    console.log('imagelink', imageLink);
+
+    if (this.props.id > 0 || store.get('id') > 0) {
       return (
         <div>
           <div className="uk-grid uk-grid-collapse profile-container">

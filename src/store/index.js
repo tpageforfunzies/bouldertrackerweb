@@ -1,10 +1,5 @@
-import { createStore } from 'redux';
+import SimpleStore from '@jhoot/simplestore'
 
-const initialState = {
-  
-};
+const store = new SimpleStore();
 
-const reducer = (state = initialState, action) {
-
-}
-
+export default store;

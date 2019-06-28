@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect, withRouter } from 'react-router-dom';
-
+import store from '../../store';
 import './scss/Login.scss';
+
 
 class Login extends Component {
   constructor(props) {
@@ -43,6 +44,9 @@ class Login extends Component {
       .then((response) => {
         localStorage.setItem('jwt', response.data.user.token);
         localStorage.setItem('id', parseInt(response.data.user.ID));
+        store.set('jwt', response.data.user.token);
+        store.set('id', parseInt(response.data.user.ID));
+        
         console.log('response in handleSubmit', response.data)
         this.props.handleAuthed(response.data.user.token, response.data.user.ID);
       })

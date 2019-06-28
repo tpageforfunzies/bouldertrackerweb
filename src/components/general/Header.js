@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Link, withRouter } from 'react-router-d
 
 import './scss/Header.scss';
 import bars from '../../assets/images/bars.png';
-
 class Header extends Component  {
   constructor(props) {
     super(props);
@@ -12,7 +11,7 @@ class Header extends Component  {
     if(this.props.authed) {
       offCanv = (
         <div>
-          <div id="offcanv" data-uk-offcanvas>
+          <div id="offcanv" data-uk-offcanvas="overlay: true;">
             <div class="uk-offcanvas-bar">
               <div className="uk-grid uk-grid-collapse">
                 <div className="uk-width-2-3">
@@ -51,7 +50,7 @@ class Header extends Component  {
     } else {
       offCanv = (
         <div>
-          <div id="offcanv" data-uk-offcanvas>
+          <div id="offcanv" data-uk-offcanvas="overlay: true;">
             <div class="uk-offcanvas-bar">
               <div className="uk-grid uk-grid-collapse">
                 <div className="uk-width-2-3">

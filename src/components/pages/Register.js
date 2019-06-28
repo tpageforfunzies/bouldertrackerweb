@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import './scss/Register.scss';
 import { BrowserRouter as Redirect, withRouter } from 'react-router-dom';
+import store from '../../store'
 
 class Register extends Component {
   constructor(props) {
@@ -46,6 +47,8 @@ class Register extends Component {
       .then((response) => {
         localStorage.setItem('jwt', response.data.user.token);
         localStorage.setItem('id', parseInt(response.data.user.ID));
+        store.set('jwt', response.data.user.token);
+        store.set('id', parseInt(response.data.user.ID));
         this.props.handleAuthed(response.data.user.token, response.data.user.ID);
       })
       .catch(function (error) {
